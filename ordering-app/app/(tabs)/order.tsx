@@ -17,8 +17,8 @@ export default function OrderScreen() {
 
   return (
     <View style={styles.container}>
-      {menuItems.map((item) => (
-        <FoodCard foodItem={item} key={item.name} />
+      {menuItems.map((item, index) => (
+        <FoodCard foodItem={item} key={index} />
       ))}
     </View>
   );
