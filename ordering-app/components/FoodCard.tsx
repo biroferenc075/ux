@@ -14,10 +14,10 @@ const FoodCard: React.FC<FoodCardProps> = ({ foodItem }) => {
   return (
     <View style={styles.container}>
       <Image
-        style={styles.image}
-        source={{ uri: foodItem.imagePath }}
-        resizeMode="cover"
+        source={foodItem.imageSrc}
         borderRadius={10}
+        width={120}
+        height={120}
       />
       <Text style={styles.text} category="h5">
         {foodItem.name}
