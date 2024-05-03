@@ -8,17 +8,12 @@ interface FoodCardProps {
 }
 
 const FoodCard: React.FC<FoodCardProps> = ({ foodItem }) => {
-  useEffect(() => {
-    console.log(foodItem.imagePath);
-  });
   return (
     <View style={styles.container}>
-      <Image
-        source={foodItem.imageSrc}
-        borderRadius={10}
-        width={120}
-        height={120}
-      />
+      <View style={styles.imagecontainer}>
+        <Image source={foodItem.imageSrc} />
+      </View>
+
       <Text style={styles.text} category="h5">
         {foodItem.name}
       </Text>
@@ -31,13 +26,24 @@ const FoodCard: React.FC<FoodCardProps> = ({ foodItem }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flexBasis: "49%",
+    flexBasis: "40%",
   },
 
   image: {
-    height: 140,
+    height: 100,
+    width: 100,
+    resizeMode: "contain",
+    objectFit: "contain",
+  },
+
+  imagecontainer: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: 150,
     width: "100%",
-    objectFit: "cover",
+    overflow: "hidden",
+    borderRadius: 10,
   },
 
   text: {

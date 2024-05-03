@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { ScrollView, StyleSheet } from "react-native";
 import { View } from "@/components/Themed";
 import FoodCard from "@/components/FoodCard";
 import { useEffect, useState } from "react";
@@ -16,20 +16,23 @@ export default function OrderScreen() {
   }, []);
 
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       {menuItems.map((item, index) => (
         <FoodCard foodItem={item} key={index} />
       ))}
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    padding: 20,
     display: "flex",
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "center",
+    columnGap: 20,
+    rowGap: 10,
     alignItems: "center",
     backgroundColor: "#f5f5f5",
   },
