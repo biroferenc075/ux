@@ -1,6 +1,6 @@
 import { FoodItem } from "@/models/foodItem";
 import { Card, Text } from "@ui-kitten/components";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Image, View, StyleSheet } from "react-native";
 
 interface FoodCardProps {
@@ -8,13 +8,16 @@ interface FoodCardProps {
 }
 
 const FoodCard: React.FC<FoodCardProps> = ({ foodItem }) => {
+  useEffect(() => {
+    console.log(foodItem.imagePath);
+  });
   return (
     <View style={styles.container}>
       <Image
+        style={styles.image}
         source={{ uri: foodItem.imagePath }}
+        resizeMode="cover"
         borderRadius={10}
-        width={120}
-        height={120}
       />
       <Text style={styles.text} category="h5">
         {foodItem.name}
@@ -29,6 +32,12 @@ const FoodCard: React.FC<FoodCardProps> = ({ foodItem }) => {
 const styles = StyleSheet.create({
   container: {
     flexBasis: "49%",
+  },
+
+  image: {
+    height: 140,
+    width: "100%",
+    objectFit: "cover",
   },
 
   text: {
