@@ -7,5 +7,5 @@ export interface FoodItem {
   allergens: Allergens[];
   diets: Diets[];
   description: string;
-  imagePath: string;
+  imageSrc: any;
 }

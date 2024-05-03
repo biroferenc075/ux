@@ -11,10 +11,11 @@ const FoodCard: React.FC<FoodCardProps> = ({ foodItem }) => {
   return (
     <View style={styles.container}>
       <Image
-        source={{ uri: foodItem.imagePath }}
+        source={foodItem.imageSrc}
         borderRadius={10}
         width={120}
         height={120}
+        
       />
       <Text style={styles.text} category="h5">
         {foodItem.name}
