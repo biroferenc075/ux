@@ -1,5 +1,5 @@
 export enum Allergens {
-  lactose = "lactose",
+  dairy = "dairy",
   gluten = "gluten",
   eggs = "eggs",
   shellfish = "shellfish",
