@@ -1,12 +1,18 @@
 import { StyleSheet } from "react-native";
 import { View } from "@/components/Themed";
 import FoodCard from "@/components/FoodCard";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { FoodItem } from "@/models/foodItem";
 import { Allergens } from "@/models/enums/allergens";
+import { FoodItemService } from "@/services/foodItemService";
 
 export default function OrderScreen() {
-  useEffect(() => {});
+  const [menuItems, setMenuItems] = useState<FoodItem[]>([]);
+
+  useEffect(() => {
+    const items = FoodItemService.getMenuItems();
+    setMenuItems(items);
+  });
 
   const test: FoodItem = {
     description: "Wowowowowo",
