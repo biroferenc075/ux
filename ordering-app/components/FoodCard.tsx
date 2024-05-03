@@ -28,11 +28,7 @@ const FoodCard: React.FC<FoodCardProps> = ({ foodItem }) => {
 
 const styles = StyleSheet.create({
   container: {
-    display: "flex",
-    flexWrap: "wrap",
-    flexDirection: "column",
-    justifyContent: "center",
-    width: "45%",
+    flexBasis: "49%",
   },
 
   text: {
