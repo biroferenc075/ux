@@ -11,20 +11,15 @@ export default function OrderScreen() {
 
   useEffect(() => {
     const items = FoodItemService.getMenuItems();
+    console.log(items);
     setMenuItems(items);
-  });
+  }, []);
 
-  const test: FoodItem = {
-    description: "Wowowowowo",
-    allergens: [Allergens.eggs],
-    name: "Name",
-    price: 200,
-    imagePath:
-      "https://t4.ftcdn.net/jpg/06/33/96/81/360_F_633968177_Neg4rl4h68UjlMKl3vM383fVpTp8n0Xn.jpg",
-  };
   return (
     <View style={styles.container}>
-      <FoodCard foodItem={test} />
+      {menuItems.map((item) => (
+        <FoodCard foodItem={item} />
+      ))}
     </View>
   );
 }

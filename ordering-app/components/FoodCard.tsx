@@ -1,7 +1,7 @@
 import { FoodItem } from "@/models/foodItem";
-import { Card } from "@ui-kitten/components";
+import { Card, Text } from "@ui-kitten/components";
 import React, { useState } from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
+import { Image, View, StyleSheet } from "react-native";
 
 interface FoodCardProps {
   foodItem: FoodItem;
@@ -9,16 +9,37 @@ interface FoodCardProps {
 
 const FoodCard: React.FC<FoodCardProps> = ({ foodItem }) => {
   return (
-    <View>
-      <Card>
-        <Image source={{ uri: foodItem.imagePath }} />
-        <Text>asd</Text>
-        <Text>{foodItem.price}</Text>
-      </Card>
+    <View style={styles.container}>
+      <Image
+        source={{ uri: foodItem.imagePath }}
+        borderRadius={10}
+        width={120}
+        height={120}
+      />
+      <Text style={styles.text} category="h5">
+        {foodItem.name}
+      </Text>
+      <Text style={styles.text} category="s1">
+        {foodItem.price}
+      </Text>
     </View>
   );
 };
 
-//const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    display: "flex",
+    flexWrap: "wrap",
+    flexDirection: "column",
+    justifyContent: "center",
+    width: "45%",
+  },
+
+  text: {
+    textAlign: "center",
+    overflow: "hidden",
+    fontSize: 12,
+  },
+});
 
 export default FoodCard;
