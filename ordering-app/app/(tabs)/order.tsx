@@ -18,7 +18,7 @@ export default function OrderScreen() {
   return (
     <View style={styles.container}>
       {menuItems.map((item, index) => (
-        <FoodCard foodItem={item} key={index}/>
+        <FoodCard foodItem={item} key={index} />
       ))}
     </View>
   );
@@ -26,7 +26,9 @@ export default function OrderScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    display: "flex",
+    flexDirection: "row",
+    flexWrap: "wrap",
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#f5f5f5",
