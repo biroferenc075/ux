@@ -5,6 +5,5 @@ export interface FoodItem {
   price: number;
   allergens: Allergens[];
   description: string;
-  // base64 encoded image
-  image: string;
+  imagePath: string;
 }

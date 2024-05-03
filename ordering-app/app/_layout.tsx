@@ -8,8 +8,9 @@ import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
-
+import * as eva from "@eva-design/eva";
 import { useColorScheme } from "@/components/useColorScheme";
+import { ApplicationProvider } from "@ui-kitten/components";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -52,10 +53,12 @@ function RootLayoutNav() {
   const colorScheme = useColorScheme();
 
   return (
-    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      </Stack>
-    </ThemeProvider>
+    <ApplicationProvider {...eva} theme={eva.light}>
+      <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+        <Stack>
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        </Stack>
+      </ThemeProvider>
+    </ApplicationProvider>
   );
 }
