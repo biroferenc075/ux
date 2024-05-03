@@ -10,7 +10,7 @@ const getMenuItems = (): FoodItem[] => {
     allergens: item.allergens.map(a => a as keyof typeof Allergens),
     diets: item.diets.map(d => d as keyof typeof Diets),
     description: item.description,
-    imagePath: "../assets/"+item.imageSource,
+    imagePath: "/public/assets/images/food/"+item.imageSource,
   } as FoodItem})
 };
 
