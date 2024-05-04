@@ -1,9 +1,7 @@
 import { ScrollView, StyleSheet } from "react-native";
-import { View } from "@/components/Themed";
 import FoodCard from "@/components/FoodCard";
 import { useEffect, useState } from "react";
 import { FoodItem } from "@/models/foodItem";
-import { Allergens } from "@/models/enums/allergens";
 import { FoodItemService } from "@/services/foodItemService";
 
 export default function OrderScreen() {
