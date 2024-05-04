@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import * as eva from "@eva-design/eva";
 import { useColorScheme } from "@/components/useColorScheme";
 import { ApplicationProvider } from "@ui-kitten/components";
+import { AppProvider } from "@/store/AppContext";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -55,9 +56,11 @@ function RootLayoutNav() {
   return (
     <ApplicationProvider {...eva} theme={eva.light}>
       <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        </Stack>
+        <AppProvider>
+          <Stack>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          </Stack>
+        </AppProvider>
       </ThemeProvider>
     </ApplicationProvider>
   );
