@@ -16,7 +16,7 @@ interface FoodCardProps {
 
 const FoodCard: React.FC<FoodCardProps> = ({ foodItem }) => {
   const handlePress = () => {
-    router.navigate("/details");
+    router.navigate("order/details");
   };
 
   return (
