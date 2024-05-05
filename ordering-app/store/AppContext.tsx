@@ -10,7 +10,7 @@ interface Action {
   payload: CartItem;
 }
 
-const AppContext = createContext(null);
+const AppContext = createContext({});
 
 const initialState = {
   cart: [],
