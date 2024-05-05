@@ -14,7 +14,7 @@ export default function OrderLayout() {
       }}
     >
       {/* Optionally configure static options outside the route.*/}
-      <Stack.Screen name="order" options={{}} />
+      <Stack.Screen name="food-menu" options={{ headerShown: false }} />
     </Stack>
   );
 }

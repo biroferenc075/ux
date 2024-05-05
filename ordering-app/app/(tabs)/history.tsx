@@ -4,7 +4,7 @@ import { AppContextType, useAppContext } from "@/store/AppContext";
 import { ScrollView, StyleSheet, View } from "react-native";
 
 export default function HistoryScreen() {
-  const { state } = useAppContext() as AppContextType;
+  const { state } = useAppContext();
 
   return (
     <ScrollView contentContainerStyle={styles.container}>

@@ -1,14 +1,8 @@
 import { FoodItem } from "@/models/foodItem";
-import { Card, Text } from "@ui-kitten/components";
+import { Text } from "@ui-kitten/components";
 import { router } from "expo-router";
-import React, { useEffect, useState } from "react";
-import {
-  Image,
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  Pressable,
-} from "react-native";
+import React from "react";
+import { Image, View, StyleSheet, Pressable } from "react-native";
 
 interface FoodCardProps {
   foodItem: FoodItem;
@@ -16,7 +10,9 @@ interface FoodCardProps {
 
 const FoodCard: React.FC<FoodCardProps> = ({ foodItem }) => {
   const handlePress = () => {
-    router.navigate("order/details");
+    router.navigate({
+      pathname: "order/details",
+    });
   };
 
   return (

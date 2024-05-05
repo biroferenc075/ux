@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { FoodItem } from "@/models/foodItem";
 import { FoodItemService } from "@/services/foodItemService";
 
-export default function OrderScreen() {
+export default function FoodMenuScreen() {
   const [menuItems, setMenuItems] = useState<FoodItem[]>([]);
 
   useEffect(() => {

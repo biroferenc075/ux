@@ -1,9 +1,11 @@
 import { CartItem } from "@/models/cartItem";
+import { FoodItem } from "@/models/foodItem";
 import { OrderHistory } from "@/models/orderHistory";
 import { OrderHistoryService } from "@/services/orderHistoryService";
 import { createContext, useContext, useReducer } from "react";
 
 interface AppState {
+  selectedFoodItem: FoodItem | undefined;
   cart: Array<CartItem>;
   orderHistory: Array<OrderHistory>;
 }
@@ -18,12 +20,16 @@ export interface AppContextType {
   dispatch: React.Dispatch<Action>;
 }
 
-const AppContext = createContext({});
-
-const initialState = {
+const initialState: AppState = {
+  selectedFoodItem: undefined,
   cart: [],
   orderHistory: OrderHistoryService.getOrderHistory(),
 };
+
+const AppContext = createContext<AppContextType>({
+  state: initialState,
+  dispatch: () => {},
+});
 
 const appReducer = (state: AppState, action: Action) => {
   switch (action.type) {

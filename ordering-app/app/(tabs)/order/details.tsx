@@ -1,10 +1,13 @@
 import EditScreenInfo from "@/components/EditScreenInfo";
-import { router } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 import { StyleSheet } from "react-native";
 import { Button } from "@ui-kitten/components";
 import { Text, View } from "@/components/Themed";
+import { useAppContext } from "@/store/AppContext";
 
 export default function DetailsScreen() {
+  const { state } = useAppContext();
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Cart</Text>
