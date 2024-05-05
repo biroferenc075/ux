@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     justifyContent: "center",
     columnGap: 20,
-    rowGap: 10,
+    rowGap: 15,
     alignItems: "center",
     backgroundColor: "#f5f5f5",
   },
