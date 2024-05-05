@@ -1,8 +1,11 @@
 import { CartItem } from "@/models/cartItem";
+import { OrderHistory } from "@/models/orderHistory";
+import { OrderHistoryService } from "@/services/orderHistoryService";
 import { createContext, useContext, useReducer } from "react";
 
 interface AppState {
   cart: Array<CartItem>;
+  orderHistory: Array<OrderHistory>;
 }
 
 interface Action {
@@ -10,10 +13,16 @@ interface Action {
   payload: CartItem;
 }
 
+export interface AppContextType {
+  state: AppState;
+  dispatch: React.Dispatch<Action>;
+}
+
 const AppContext = createContext({});
 
 const initialState = {
   cart: [],
+  orderHistory: OrderHistoryService.getOrderHistory(),
 };
 
 const appReducer = (state: AppState, action: Action) => {

@@ -1,35 +1,26 @@
-import { StyleSheet } from "react-native";
-
-import EditScreenInfo from "@/components/EditScreenInfo";
-import { Text, View } from "@/components/Themed";
+import OrderHistoryCard from "@/components/OrderHistoryCard";
+import { OrderHistory } from "@/models/orderHistory";
+import { AppContextType, useAppContext } from "@/store/AppContext";
+import { ScrollView, StyleSheet, View } from "react-native";
 
 export default function HistoryScreen() {
+  const { state } = useAppContext() as AppContextType;
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>History</Text>
-      <View
-        style={styles.separator}
-        lightColor="#eee"
-        darkColor="rgba(255,255,255,0.1)"
-      />
-      <EditScreenInfo path="app/(tabs)/history.tsx" />
-    </View>
+    <ScrollView contentContainerStyle={styles.container}>
+      {state.orderHistory.map((item: OrderHistory, index: number) => (
+        <View style={{ padding: 10 }}>
+          <OrderHistoryCard orderHistory={item} key={index} />
+        </View>
+      ))}
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: "center",
+    paddingVertical: 20,
     justifyContent: "center",
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: "80%",
+    backgroundColor: "#f5f5f5",
   },
 });
