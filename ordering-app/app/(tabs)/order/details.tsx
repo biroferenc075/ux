@@ -1,5 +1,5 @@
 import { router } from "expo-router";
-import { StyleSheet, Image, View } from "react-native";
+import { StyleSheet, Image, View, ScrollView } from "react-native";
 import { Button, Input, Text } from "@ui-kitten/components";
 import { useAppContext } from "@/store/AppContext";
 import React, { useState } from "react";
@@ -36,7 +36,7 @@ export default function DetailsScreen() {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.imagecontainer}>
         <Image style={styles.image} source={state.selectedFoodItem?.imageSrc} />
       </View>
@@ -67,7 +67,7 @@ export default function DetailsScreen() {
           onChangeText={handleNoteChange}
         ></Input>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
@@ -106,6 +106,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     flexWrap: "wrap",
+    gap: 10,
   },
   allergen: {
     display: "flex",

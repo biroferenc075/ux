@@ -3,22 +3,27 @@ import FoodCard from "@/components/FoodCard";
 import { useEffect, useState } from "react";
 import { FoodItem } from "@/models/foodItem";
 import { FoodItemService } from "@/services/foodItemService";
+import CartSnackbar from "@/components/CartSnackbar";
+import { useAppContext } from "@/store/AppContext";
 
 export default function FoodMenuScreen() {
   const [menuItems, setMenuItems] = useState<FoodItem[]>([]);
+  const { state } = useAppContext();
 
   useEffect(() => {
     const items = FoodItemService.getMenuItems();
-    console.log(items);
     setMenuItems(items);
   }, []);
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      {menuItems.map((item, index) => (
-        <FoodCard foodItem={item} key={index} />
-      ))}
-    </ScrollView>
+    <>
+      <ScrollView contentContainerStyle={styles.container}>
+        {menuItems.map((item, index) => (
+          <FoodCard foodItem={item} key={index} />
+        ))}
+      </ScrollView>
+      {state.cart.length > 0 ? <CartSnackbar /> : <></>}
+    </>
   );
 }
 

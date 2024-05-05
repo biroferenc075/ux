@@ -4,6 +4,7 @@ import EditScreenInfo from "@/components/EditScreenInfo";
 import { Text, View } from "@/components/Themed";
 import { router } from "expo-router";
 import { Button } from "@ui-kitten/components";
+import { useAppContext } from "@/store/AppContext";
 
 export default function CartScreen() {
   return (
