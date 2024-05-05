@@ -57,7 +57,7 @@ function RootLayoutNav() {
     <ApplicationProvider {...eva} theme={eva.light}>
       <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
         <AppProvider>
-          <Stack>
+          <Stack screenOptions={{ headerShown: false }}>
             <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           </Stack>
         </AppProvider>
