@@ -1,12 +1,39 @@
-import { router, useLocalSearchParams } from "expo-router";
+import { router } from "expo-router";
 import { StyleSheet, Image, View } from "react-native";
-import { Button, Text } from "@ui-kitten/components";
+import { Button, Input, Text } from "@ui-kitten/components";
 import { useAppContext } from "@/store/AppContext";
-import React from "react";
+import React, { useState } from "react";
 import { AllergenBadge } from "@/components/AllergenBadge";
+import ItemCountSelector from "@/components/ItemCountSelector";
+import { CartItem } from "@/models/cartItem";
+import { FoodItem } from "@/models/foodItem";
+import uuid from "react-native-uuid";
 
 export default function DetailsScreen() {
-  const { state } = useAppContext();
+  const { state, dispatch } = useAppContext();
+  const foodItem = state.selectedFoodItem as FoodItem;
+  const [itemCount, setItemCount] = useState(0);
+  const [note, setNote] = useState("");
+
+  const handleCountChange = (newValue: number) => {
+    setItemCount(newValue);
+  };
+
+  const handleNoteChange = (newValue: string) => {
+    setNote(newValue);
+  };
+
+  const onAddToCartPressed = () => {
+    const cartItem: CartItem = {
+      count: itemCount,
+      foodItem: foodItem,
+      priceSum: itemCount * foodItem?.price,
+      note: note,
+      id: uuid.v4().toString(),
+    };
+    dispatch({ type: "ADD_TO_CART", payload: cartItem });
+    router.navigate("/order/food-menu");
+  };
 
   return (
     <View style={styles.container}>
@@ -22,14 +49,24 @@ export default function DetailsScreen() {
       <Text>{state.selectedFoodItem?.description}</Text>
       <Text style={styles.title}>Allergens</Text>
       <View style={styles.allergencontainer}>
-        {state.selectedFoodItem?.allergens.map((allergen) => (
-          <View style={styles.allergencontainer}>
-            <AllergenBadge allergen={allergen} key={allergen} />
+        {state.selectedFoodItem?.allergens.map((allergen, index) => (
+          <View style={styles.allergen}>
+            <AllergenBadge allergen={allergen} key={index} />
             <Text>{allergen.charAt(0).toUpperCase() + allergen.slice(1)}</Text>
           </View>
         ))}
       </View>
-      <View style={styles.formcontainer}></View>
+      <View style={styles.formcontainer}>
+        <ItemCountSelector onValueChange={handleCountChange} />
+        <Button onPress={onAddToCartPressed}>Add to cart</Button>
+        <Input
+          style={styles.textarea}
+          label={"Note"}
+          placeholder="Let the chefs know if you have any special requests!"
+          multiline
+          onChangeText={handleNoteChange}
+        ></Input>
+      </View>
     </View>
   );
 }
@@ -68,12 +105,24 @@ const styles = StyleSheet.create({
   allergencontainer: {
     display: "flex",
     flexDirection: "row",
+    flexWrap: "wrap",
+  },
+  allergen: {
+    display: "flex",
+    flexDirection: "row",
     gap: 10,
     flexBasis: "45%",
-    flexWrap: "wrap",
   },
   formcontainer: {
     display: "flex",
+    width: "100%",
     flexDirection: "row",
+    marginVertical: 40,
+    justifyContent: "space-between",
+    flexWrap: "wrap",
+  },
+  textarea: {
+    flexBasis: "100%",
+    marginTop: 20,
   },
 });

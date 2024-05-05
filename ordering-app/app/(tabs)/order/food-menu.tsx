@@ -24,11 +24,11 @@ export default function FoodMenuScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
+    padding: 40,
     display: "flex",
     flexDirection: "row",
     flexWrap: "wrap",
-    justifyContent: "center",
+    justifyContent: "space-between",
     columnGap: 20,
     rowGap: 15,
     alignItems: "center",
