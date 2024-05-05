@@ -9,7 +9,7 @@ import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import * as eva from "@eva-design/eva";
-import { useColorScheme } from "@/components/useColorScheme";
+import { useColorScheme } from "@/hooks/useColorScheme";
 import { ApplicationProvider } from "@ui-kitten/components";
 import { AppProvider } from "@/store/AppContext";
 

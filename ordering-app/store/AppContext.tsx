@@ -12,7 +12,7 @@ interface AppState {
 
 interface Action {
   type: string;
-  payload: CartItem;
+  payload: CartItem | FoodItem;
 }
 
 export interface AppContextType {
@@ -31,31 +31,38 @@ const AppContext = createContext<AppContextType>({
   dispatch: () => {},
 });
 
-const appReducer = (state: AppState, action: Action) => {
+const appReducer = (state: AppState, action: Action): AppState => {
   switch (action.type) {
     case "ADD_TO_CART":
       return {
         ...state,
-        cart: [...state.cart, action.payload],
+        cart: [...state.cart, action.payload as CartItem],
       };
     case "UPDATE_ITEM_IN_CART":
       return {
         ...state,
         cart: state.cart.map((cartItem) =>
-          cartItem.id === action.payload.id ? action.payload : cartItem
+          cartItem.id === (action.payload as CartItem).id
+            ? (action.payload as CartItem)
+            : cartItem
         ),
       };
     case "DELETE_FROM_CART":
       return {
         ...state,
         cart: state.cart.filter(
-          (cartItem) => cartItem.id !== action.payload.id
+          (cartItem) => cartItem.id !== (action.payload as CartItem).id
         ),
       };
     case "EMPTY_CART":
       return {
         ...state,
         cart: [],
+      };
+    case "SELECT_FOOD_ITEM":
+      return {
+        ...state,
+        selectedFoodItem: action.payload as FoodItem,
       };
     default:
       return state;

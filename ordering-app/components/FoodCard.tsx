@@ -1,4 +1,5 @@
 import { FoodItem } from "@/models/foodItem";
+import { useAppContext } from "@/store/AppContext";
 import { Text } from "@ui-kitten/components";
 import { router } from "expo-router";
 import React from "react";
@@ -9,7 +10,9 @@ interface FoodCardProps {
 }
 
 const FoodCard: React.FC<FoodCardProps> = ({ foodItem }) => {
+  const { dispatch } = useAppContext();
   const handlePress = () => {
+    dispatch({ type: "SELECT_FOOD_ITEM", payload: foodItem });
     router.navigate({
       pathname: "order/details",
     });
@@ -21,7 +24,6 @@ const FoodCard: React.FC<FoodCardProps> = ({ foodItem }) => {
         <View style={styles.imagecontainer}>
           <Image source={foodItem.imageSrc} style={styles.image} />
         </View>
-
         <Text style={styles.nametext} category="h5">
           {foodItem.name}
         </Text>
