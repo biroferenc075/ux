@@ -24,8 +24,8 @@ const FoodCard: React.FC<FoodCardProps> = ({ foodItem }) => {
       <View style={styles.cardcontainer}>
         <View style={styles.badgecontainer}>
           {foodItem.allergens.map((item, index) => 
-            <View style={styles.badge}>
-              <AllergenBadge allergen={item} key={index}></AllergenBadge>
+            <View style={styles.badge}key={index}>
+              <AllergenBadge allergen={item}/>
             </View>
           )}
           <View style = {styles.filler}></View>

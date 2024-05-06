@@ -7,9 +7,11 @@ import { Button } from "@ui-kitten/components";
 
 
 export default function QrCodeScanScreen() {
-    const onSuccess = (e : any) => {
-        router.navigate("/")
-    };
+  const onSuccess = (e : any) => {
+      router.navigate("/history/order-details")
+  };
+
+  setTimeout(onSuccess, 1000);
     
   return (
     <View style={styles.container}>
