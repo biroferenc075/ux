@@ -37,7 +37,7 @@ const FoodCard: React.FC<FoodCardProps> = ({ foodItem }) => {
 
 const styles = StyleSheet.create({
   pressable: {
-    flexBasis: "40%",
+    flexBasis: "45%",
   },
 
   image: {
