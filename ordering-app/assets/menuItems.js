@@ -225,6 +225,7 @@ export const menuItems = [
     {
         "name" : "Mojito",
         "price" : 1800,
+        "type" : "drink",
         "allergens" : [],
         "diets" : ["vegan","vegetarian","pescatarian","meat_eater"],
         "description" : "A refreshing blend of white rum, fresh mint leaves, lime juice, sugar, and soda water, served over ice.",
@@ -233,6 +234,7 @@ export const menuItems = [
     {
         "name" : "Cosmopolitan",
         "price" : 2000,
+        "type" : "drink",
         "allergens" : [],
         "diets" : ["vegan","vegetarian","pescatarian","meat_eater"],
         "description" : "A sophisticated cocktail made with vodka, triple sec, cranberry juice, and freshly squeezed lime juice, shaken and strained into a chilled martini glass.",
@@ -241,6 +243,7 @@ export const menuItems = [
     {
         "name" : "White Russian",
         "price" : 2200,
+        "type" : "drink",
         "allergens" : ["dairy"],
         "diets" : ["vegetarian","pescatarian","meat_eater"],
         "description" : "A decadent cocktail featuring vodka, coffee liqueur, and cream, served over ice in an old-fashioned glass.",
@@ -249,6 +252,7 @@ export const menuItems = [
     {
         "name" : "Green Tea",
         "price" : 600,
+        "type" : "drink",
         "allergens" : [],
         "diets" : ["vegan","vegetarian","pescatarian","meat_eater"],
         "description" : "A classic and aromatic green tea, known for its light and refreshing flavor, perfect for any time of day.",
@@ -256,7 +260,8 @@ export const menuItems = [
     },
     {
         "name" : "Chamomile Tea",
-        "price" : 600 ,
+        "price" : 600,
+        "type" : "drink",
         "allergens" : [],
         "diets" : ["vegan","vegetarian","pescatarian","meat_eater"],
         "description" : "A soothing herbal tea made from dried chamomile flowers, renowned for its calming properties and delicate floral taste.",
@@ -265,6 +270,7 @@ export const menuItems = [
     {
         "name" : "Espresso",
         "price" : 700,
+        "type" : "drink",
         "allergens" : ["dairy"],
         "diets" : ["vegetarian","pescatarian","meat_eater"],
         "description" : "A strong and intense shot of espresso, perfect for a quick pick-me-up or after-dinner indulgence.",
@@ -273,6 +279,7 @@ export const menuItems = [
     {
         "name" : "Cappuccino",
         "price" : 2200,
+        "type" : "drink",
         "allergens" : ["dairy"],
         "diets" : ["vegetarian","pescatarian","meat_eater"],
         "description" : "A classic Italian coffee made with equal parts espresso, steamed milk, and milk foam, topped with a sprinkle of cocoa powder.",
@@ -280,7 +287,8 @@ export const menuItems = [
     },
     {
         "name" : "Iced Latte",
-        "price" : 1000 ,
+        "price" : 1000,
+        "type" : "drink",
         "allergens" : ["dairy"],
         "diets" : ["vegetarian","pescatarian","meat_eater"],
         "description" : "A refreshing combination of espresso and chilled milk served over ice, perfect for hot summer days or anytime you need a cool caffeine boost.",
