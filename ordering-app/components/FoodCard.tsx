@@ -4,6 +4,7 @@ import { Text } from "@ui-kitten/components";
 import { router } from "expo-router";
 import React from "react";
 import { Image, View, StyleSheet, Pressable } from "react-native";
+import { AllergenBadge } from "./AllergenBadge";
 
 interface FoodCardProps {
   foodItem: FoodItem;
@@ -20,7 +21,15 @@ const FoodCard: React.FC<FoodCardProps> = ({ foodItem }) => {
 
   return (
     <Pressable style={styles.pressable} onPress={handlePress}>
-      <View>
+      <View style={styles.cardcontainer}>
+        <View style={styles.badgecontainer}>
+          {foodItem.allergens.map((item, index) => 
+            <View style={styles.badge}>
+              <AllergenBadge allergen={item} key={index}></AllergenBadge>
+            </View>
+          )}
+          <View style = {styles.filler}></View>
+        </View>
         <View style={styles.imagecontainer}>
           <Image source={foodItem.imageSrc} style={styles.image} />
         </View>
@@ -65,6 +74,35 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     fontSize: 12,
   },
+
+  cardcontainer: {
+    position: "relative",
+  },
+
+  badgecontainer: {
+    padding: 5,
+    height: 150,
+    position: "absolute",
+    right: 0,
+    display: "flex",
+    flexDirection: "column",
+    flexWrap: "wrap-reverse",
+    justifyContent: "space-evenly",
+    columnGap: 4,
+    rowGap: 4,
+    alignItems: "center",
+    zIndex: 1,
+  },
+
+  filler: {
+    marginBottom: "auto"
+  },
+
+  badge: {
+    borderColor: "white",
+    borderWidth: 1,
+    borderRadius: 50
+  }
 });
 
 export default FoodCard;

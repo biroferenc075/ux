@@ -24,28 +24,30 @@ const getSrc = (allergen: Allergens) => {
   }
 }
 
+export const getColor = (allergen: Allergens) => {
+  switch (allergen) {
+    case Allergens.dairy:
+      return "#2AD2FF";
+    case Allergens.eggs:
+      return "#6C6549";
+    case Allergens.gluten:
+      return "#A3843A";
+    case Allergens.nuts:
+      return "#5A4925";
+    case Allergens.shellfish:
+      return "#FF3D3D";
+    case Allergens.soy:
+      return "#2F723A";
+    case Allergens.fish:
+      return "#2D68CF";
+  }
+};
+
 export const AllergenBadge: React.FC<AllergenBadgeProps> = ({ allergen }) => {
-  const getColor = () => {
-    switch (allergen) {
-      case Allergens.dairy:
-        return "#2AD2FF";
-      case Allergens.eggs:
-        return "#6C6549";
-      case Allergens.gluten:
-        return "#A3843A";
-      case Allergens.nuts:
-        return "#5A4925";
-      case Allergens.shellfish:
-        return "#FF3D3D";
-      case Allergens.soy:
-        return "#2F723A";
-      case Allergens.fish:
-        return "#2D68CF";
-    }
-  };
+  
   const getStyle = () => {
     return {
-      backgroundColor: getColor(),
+      backgroundColor: getColor(allergen),
       height: 30,
       width: 30,
       borderRadius: 50,

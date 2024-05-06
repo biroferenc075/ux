@@ -50,8 +50,8 @@ export default function DetailsScreen() {
       <Text style={styles.title}>Allergens</Text>
       <View style={styles.allergencontainer}>
         {state.selectedFoodItem?.allergens.map((allergen, index) => (
-          <View style={styles.allergen}>
-            <AllergenBadge allergen={allergen} key={index} />
+          <View style={styles.allergen} key={index}>
+            <AllergenBadge allergen={allergen} />
             <Text>{allergen.charAt(0).toUpperCase() + allergen.slice(1)}</Text>
           </View>
         ))}
