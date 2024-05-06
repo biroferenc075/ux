@@ -8,11 +8,12 @@ interface AppState {
   selectedFoodItem: FoodItem | undefined;
   cart: Array<CartItem>;
   orderHistory: Array<OrderHistory>;
+  tableNumber: number | undefined;
 }
 
 interface Action {
   type: string;
-  payload: CartItem | FoodItem;
+  payload: CartItem | FoodItem | number;
 }
 
 export interface AppContextType {
@@ -24,6 +25,7 @@ const initialState: AppState = {
   selectedFoodItem: undefined,
   cart: [],
   orderHistory: OrderHistoryService.getOrderHistory(),
+  tableNumber: undefined,
 };
 
 const AppContext = createContext<AppContextType>({
@@ -63,6 +65,11 @@ const appReducer = (state: AppState, action: Action): AppState => {
       return {
         ...state,
         selectedFoodItem: action.payload as FoodItem,
+      };
+    case "SET_TABLE_NUMBER":
+      return {
+        ...state,
+        tableNumber: action.payload as number,
       };
     default:
       return state;
