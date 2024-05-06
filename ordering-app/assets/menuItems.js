@@ -1,5 +1,15 @@
 export const menuItems = [
+    // test item
     
+    {
+        "name" : "Let Him Cook",
+        "price" : 9999,
+        "type" : "appetizer",
+        "allergens" : ["gluten", "dairy", "fish", "shellfish", "soy", "nuts", "eggs"],
+        "diets" : ["vegetarian","pescatarian","meat_eater"],
+        "description" : "Szia anya",
+        "imageSource" : require("./dump/chef.png")
+    },
     // main dishes
 
     {
@@ -14,7 +24,6 @@ export const menuItems = [
     {
         "name" : "Chicken Pad Thai",
         "price" : 1800,
-        
         "type" : "main",
         "allergens" : ["nuts", "soy", "gluten"],
         "diets" : ["meat_eater"],

@@ -1,38 +1,65 @@
 import { Allergens } from "@/models/enums/allergens";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Image } from "react-native";
 
 interface AllergenBadgeProps {
   allergen: Allergens;
 }
 
+const getSrc = (allergen: Allergens) => {
+  switch (allergen) {
+    case Allergens.dairy:
+      return require("../assets/images/icons/milk.gif");
+    case Allergens.eggs:
+      return require("../assets/images/icons/eggs.gif");
+    case Allergens.gluten:
+      return require("../assets/images/icons/gluten.gif");
+    case Allergens.nuts:
+      return require("../assets/images/icons/nuts.gif");
+    case Allergens.shellfish:
+      return require("../assets/images/icons/shellfish.gif");
+    case Allergens.soy:
+      return require("../assets/images/icons/soy.gif");
+    case Allergens.fish:
+      return require("../assets/images/icons/fish.gif");
+  }
+}
+
 export const AllergenBadge: React.FC<AllergenBadgeProps> = ({ allergen }) => {
-  //TODO set colors
   const getColor = () => {
     switch (allergen) {
       case Allergens.dairy:
-        return "blue";
+        return "#2AD2FF";
       case Allergens.eggs:
-        return "blue";
+        return "#6C6549";
       case Allergens.gluten:
-        return "blue";
+        return "#A3843A";
       case Allergens.nuts:
-        return "blue";
+        return "#5A4925";
       case Allergens.shellfish:
-        return "blue";
+        return "#FF3D3D";
       case Allergens.soy:
-        return "blue";
+        return "#2F723A";
+      case Allergens.fish:
+        return "#2D68CF";
     }
   };
-  return <View style={styles.container}></View>;
+  const getStyle = () => {
+    return {
+      backgroundColor: getColor(),
+      height: 30,
+      width: 30,
+      borderRadius: 50,
+    }
+  }
+
+  return <View style={getStyle()}>
+    <Image source={getSrc(allergen)} style={styles.icon} />
+  </View>;
 };
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "blue",
-    height: 25,
-    width: 25,
-    borderRadius: 50,
+  icon: {
+    height: "100%",
+    width: "100%"
   },
-
-  icon: {},
 });

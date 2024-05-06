@@ -3,6 +3,7 @@ export enum Allergens {
   gluten = "gluten",
   eggs = "eggs",
   shellfish = "shellfish",
+  fish = "fish",
   nuts = "nuts",
   soy = "soy",
 }
