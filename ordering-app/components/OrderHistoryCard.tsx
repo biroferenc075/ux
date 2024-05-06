@@ -1,16 +1,21 @@
 import React from "react";
 import { Card, Layout, Text } from "@ui-kitten/components";
 import { OrderHistory } from "@/models/orderHistory";
+import { router } from "expo-router";
+import { StyleSheet } from "react-native";
 
 const OrderHistoryCard = ({ orderHistory }: { orderHistory: OrderHistory }) => {
+  const navigateToDetails = () => {
+    router.navigate({
+      pathname: "history/order-details",
+      params: {
+        id: orderHistory.id,
+      },
+    });
+  };
+
   return (
-    <Card
-      style={{
-        flex: 1,
-        flexDirection: "column",
-        justifyContent: "space-between",
-      }}
-    >
+    <Card onPress={navigateToDetails} style={styles.card}>
       <Layout style={{ flexDirection: "row", justifyContent: "space-between" }}>
         <Text category="c1" appearance="primary">
           Order #{orderHistory.id}
@@ -28,5 +33,15 @@ const OrderHistoryCard = ({ orderHistory }: { orderHistory: OrderHistory }) => {
     </Card>
   );
 };
+
+const styles = StyleSheet.create({
+  card: {
+    flex: 1,
+    flexDirection: "column",
+    justifyContent: "space-between",
+    marginVertical: 5,
+    marginHorizontal: 5,
+  },
+});
 
 export default OrderHistoryCard;

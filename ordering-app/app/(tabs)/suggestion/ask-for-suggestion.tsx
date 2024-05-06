@@ -38,7 +38,8 @@ export default function SuggestionScreen() {
   const onSubmit = (data: any) => console.log(data);
 
   const dietArr = [Diets.meat_eater, Diets.pescatarian, Diets.vegan, Diets.vegetarian]
-  const displDietArr = ["Meat Eater", "Pescatarian", "Vegan", "Vegetarian"]
+  const displDietArr = ["None", "Pescatarian", "Vegan", "Vegetarian"]
+  
 
   return (
     <ScrollView contentContainerStyle={styles.scrollView}>
@@ -103,7 +104,7 @@ export default function SuggestionScreen() {
       render={({ field : {onChange, value} }) => {
         return <Select style={styles.selector} value = {displDietArr[(new IndexPath(dietArr.indexOf(value)).row)]} selectedIndex = {new IndexPath(dietArr.indexOf(value))}
         onSelect={(index) => {const idx = index as IndexPath; onChange(dietArr[idx.row]);}}>
-          <SelectItem title="Meat eater"/>
+          <SelectItem title="None"/>
           <SelectItem title="Pescatarian"/>
           <SelectItem title="Vegetarian"/>
           <SelectItem title="Vegan"/>
@@ -167,9 +168,11 @@ const styles = StyleSheet.create({
     rowGap: 15,
     backgroundColor: "#00000000"
   },
+  
   checkBox: {
     backgroundColor: "none"
   },
+
   checkBoxText: {
     backgroundColor: "none"
   },

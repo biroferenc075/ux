@@ -2,7 +2,7 @@ import { CartItem } from "@/models/cartItem";
 import { Allergens } from "@/models/enums/allergens";
 import { FoodItem } from "@/models/foodItem";
 import { OrderHistory } from "@/models/orderHistory";
-import { OrderHistoryService } from "@/services/orderHistoryService";
+import { OrderService } from "@/services/orderService";
 import { createContext, useContext, useReducer } from "react";
 
 interface AppState {
@@ -26,7 +26,7 @@ export interface AppContextType {
 const initialState: AppState = {
   selectedFoodItem: undefined,
   cart: [],
-  orderHistory: OrderHistoryService.getOrderHistory(),
+  orderHistory: OrderService.getOrderHistory(),
   tableNumber: undefined,
   allowedAllergens: Object.values(Allergens),
 };

@@ -18,3 +18,12 @@ export const orderHistory = [
         status: "Completed" 
     },
 ]
+
+export const orderDetails = [
+    { 
+        id: 1,
+        orderedItems: [],
+        statusMessage: "Let him cook",
+        statusImageSrc: require("./dump/chef.png"),
+    },
+]
