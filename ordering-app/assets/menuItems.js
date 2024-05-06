@@ -128,7 +128,7 @@ export const menuItems = [
         "allergens" : [],
         "diets" : ["vegan","vegetarian","pescatarian","meat_eater"],
         "description" : "A soothing herbal tea made from dried chamomile flowers, renowned for its calming properties and delicate floral taste.",
-        "imageSource" : require("./images/food/chamomille-tea.jpg")
+        "imageSource" : require("./images/food/chamomile-tea.jpg")
     },
     {
         "name" : "Espresso",
