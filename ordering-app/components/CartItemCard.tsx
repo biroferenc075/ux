@@ -12,14 +12,18 @@ const CartItemCard: React.FC<CartItemCardProps> = ({ item }) => {
   const { dispatch } = useAppContext();
 
   const handleValueChange = (newValue: number) => {
-    dispatch({
-      type: "UPDATE_ITEM_IN_CART",
-      payload: {
-        ...item,
-        count: newValue,
-        priceSum: newValue * item.foodItem.price,
-      },
-    });
+    if (newValue == 0) {
+      dispatch({ type: "DELETE_FROM_CART", payload: item });
+    } else {
+      dispatch({
+        type: "UPDATE_ITEM_IN_CART",
+        payload: {
+          ...item,
+          count: newValue,
+          priceSum: newValue * item.foodItem.price,
+        },
+      });
+    }
   };
 
   return (

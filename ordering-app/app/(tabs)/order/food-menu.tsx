@@ -7,6 +7,7 @@ import CartSnackbar from "@/components/CartSnackbar";
 import { useAppContext } from "@/store/AppContext";
 import { Text } from "@ui-kitten/components";
 import { FoodItemTypes } from "@/models/enums/foodItemTypes";
+import AllergenFilterBar from "@/components/AllergenFilterBar";
 
 export default function FoodMenuScreen() {
   const [menuItems, setMenuItems] = useState<FoodItem[]>([]);
@@ -25,6 +26,7 @@ export default function FoodMenuScreen() {
 
   return (
     <>
+      <AllergenFilterBar />
       <ScrollView contentContainerStyle={styles.container}>
         <Text style={styles.typeheader}>Appetizers</Text>
         {renderFoodItemsForType(FoodItemTypes.appetizers)}
@@ -44,7 +46,8 @@ export default function FoodMenuScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 40,
+    paddingHorizontal: 40,
+    paddingBottom: 40,
     display: "flex",
     flexDirection: "row",
     flexWrap: "wrap",

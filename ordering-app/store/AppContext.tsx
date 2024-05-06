@@ -1,4 +1,5 @@
 import { CartItem } from "@/models/cartItem";
+import { Allergens } from "@/models/enums/allergens";
 import { FoodItem } from "@/models/foodItem";
 import { OrderHistory } from "@/models/orderHistory";
 import { OrderHistoryService } from "@/services/orderHistoryService";
@@ -9,11 +10,12 @@ interface AppState {
   cart: Array<CartItem>;
   orderHistory: Array<OrderHistory>;
   tableNumber: number | undefined;
+  allowedAllergens: Allergens[];
 }
 
 interface Action {
   type: string;
-  payload: CartItem | FoodItem | number;
+  payload: CartItem | FoodItem | number | Allergens;
 }
 
 export interface AppContextType {
@@ -26,6 +28,7 @@ const initialState: AppState = {
   cart: [],
   orderHistory: OrderHistoryService.getOrderHistory(),
   tableNumber: undefined,
+  allowedAllergens: Object.values(Allergens),
 };
 
 const AppContext = createContext<AppContextType>({
@@ -70,6 +73,21 @@ const appReducer = (state: AppState, action: Action): AppState => {
       return {
         ...state,
         tableNumber: action.payload as number,
+      };
+    case "ADD_ALLOWED_ALLERGEN":
+      return {
+        ...state,
+        allowedAllergens:
+          state.allowedAllergens.indexOf(action.payload as Allergens) === -1
+            ? [...state.allowedAllergens, action.payload as Allergens]
+            : state.allowedAllergens,
+      };
+    case "REMOVE_ALLOWED_ALLERGEN":
+      return {
+        ...state,
+        allowedAllergens: state.allowedAllergens.filter((item) => {
+          item.valueOf() !== (action.payload as Allergens).valueOf();
+        }),
       };
     default:
       return state;
