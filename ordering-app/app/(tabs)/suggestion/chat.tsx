@@ -29,18 +29,20 @@ export default function ChatScreen() {
         });
       };
 
-    return <View style={styles.chatBubble}>
+    return <View>
         <Pressable style={styles.pressable} onPress={handlePress}>
-        <View>
+        <View style={styles.imageBubble}>
             <View style={styles.imagecontainer}>
-            <Image source={foodItem.imageSrc} style={styles.image} />
+              <Image source={foodItem.imageSrc} style={styles.image} />
             </View>
-            <Text style={styles.nametext} category="h5">
-            {foodItem.name}
-            </Text>
-            <Text style={styles.pricetext} category="s1">
-            {foodItem.price} Ft
-            </Text>
+            <View style={styles.textcontainer}>
+              <Text style={styles.nametext} category="h5">
+              {foodItem.name}
+              </Text>
+              <Text style={styles.pricetext} category="s1">
+              {foodItem.price} Ft
+              </Text>
+            </View>
         </View>
         </Pressable>
     </View>
@@ -89,6 +91,13 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     alignContent: "flex-end",
     padding: 15,
+    width: "auto",
+  },
+
+  imageBubble: {
+    backgroundColor: "lavender",
+    borderRadius: 30,
+    padding: 15,
     width: "auto"
   },
 
@@ -112,6 +121,11 @@ const styles = StyleSheet.create({
 
   imagecontainer: {
     height: 120,
+    borderRadius: 10,
+  },
+
+  textcontainer: {
+    flexGrow: 1,
     overflow: "hidden",
     borderRadius: 10,
   },
@@ -120,6 +134,7 @@ const styles = StyleSheet.create({
     height: "100%",
     width: "100%",
     objectFit: "cover",
+    borderRadius: 20
   },
 
   avatar: {
@@ -133,7 +148,8 @@ const styles = StyleSheet.create({
   },
 
   center: {
-    width: "100%",paddingRight: 40
+    width: "100%",
+    paddingRight: 40
   },
 
   button: {
