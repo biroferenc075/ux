@@ -26,4 +26,16 @@ export const orderDetails = [
         statusMessage: "Let him cook",
         statusImageSrc: require("./dump/chef.png"),
     },
+    { 
+        id: 2,
+        orderedItems: [],
+        statusMessage: "Your order is ready",
+        statusImageSrc: require("./dump/waiter.jpg"),
+    },
+    { 
+        id: 3,
+        orderedItems: [],
+        statusMessage: "Your order is ready",
+        statusImageSrc: require("./dump/waiter.jpg"),
+    },
 ]
