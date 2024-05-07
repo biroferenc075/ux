@@ -46,7 +46,9 @@ export default function DetailsScreen() {
           {state.selectedFoodItem?.price ?? ""} Ft
         </Text>
       </View>
-      <Text>{state.selectedFoodItem?.description}</Text>
+      <Text style={{ textAlign: "justify" }}>
+        {state.selectedFoodItem?.description}
+      </Text>
       <Text style={styles.title}>Allergens</Text>
       <View style={styles.allergencontainer}>
         {state.selectedFoodItem?.allergens.map((allergen, index) => (
@@ -77,6 +79,8 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     justifyContent: "flex-start",
     padding: 20,
+    minHeight: "100%",
+    backgroundColor: "white",
   },
   imagecontainer: {
     width: "100%",
