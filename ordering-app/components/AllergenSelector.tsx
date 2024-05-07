@@ -4,11 +4,10 @@ import { FC, useState } from "react";
 import { View, StyleSheet } from "react-native";
 import { AllergenBadge, AllergenHelpers } from "./AllergenBadge";
 import { useAppContext } from "@/store/AppContext";
-import theme from "../custom-theme.json";
 
-interface AllergenFilterBarProps {}
+interface AllergenSelectorProps {}
 
-const AllergenFilterBar: FC<AllergenFilterBarProps> = ({}) => {
+const AllergenSelector: FC<AllergenSelectorProps> = ({}) => {
   const { state, dispatch } = useAppContext();
 
   const handleButtonPress = (allergen: Allergens) => {
@@ -23,11 +22,10 @@ const AllergenFilterBar: FC<AllergenFilterBarProps> = ({}) => {
     return {
       backgroundColor: AllergenHelpers.getColor(allergen),
       borderRadius: 50,
-      borderWidth: 1,
+      borderWidth: 0,
       opacity: isAllergenAllowed ? 1 : 0.4,
       width: 45,
       height: 45,
-      borderColor: "white",
     };
   };
 
@@ -35,8 +33,7 @@ const AllergenFilterBar: FC<AllergenFilterBarProps> = ({}) => {
     <View style={styles.container}>
       <View style={styles.itemcontainer}>
         {Object.values(Allergens).map((allergen, index) => (
-          <>
-            <View style={styles.buttoncontainer} key={index}>
+            <View style={styles.buttoncontainer}  key={index}>
               <Button
                 size="tiny"
                 style={getButtonStyles(
@@ -51,7 +48,6 @@ const AllergenFilterBar: FC<AllergenFilterBarProps> = ({}) => {
                   allergen.toString().slice(1)}
               </Text>
             </View>
-          </>
         ))}
       </View>
     </View>
@@ -60,9 +56,7 @@ const AllergenFilterBar: FC<AllergenFilterBarProps> = ({}) => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingBottom: 20,
-    paddingTop: 40,
-    backgroundColor: theme["color-primary-500"],
+    width: "80%"
   },
   itemcontainer: {
     display: "flex",
@@ -71,20 +65,22 @@ const styles = StyleSheet.create({
     overflow: "scroll",
     width: "100%",
     justifyContent: "center",
-    gap: 12,
-    alignItems: "center",
+    columnGap: 20,
+    rowGap: 10,
+    alignItems: "center"
   },
 
   buttoncontainer: {
     display: "flex",
-    justifyContent: "center",
+    flexDirection: "row",
+    justifyContent: "flex-start",
     alignItems: "center",
+    width: "33%",
   },
 
   text: {
-    color: "white",
-    fontWeight: "bold",
-  },
+    marginLeft: 10
+  }
 });
 
-export default AllergenFilterBar;
+export default AllergenSelector;

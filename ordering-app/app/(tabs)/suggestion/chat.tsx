@@ -4,10 +4,11 @@ import { Button } from "@ui-kitten/components";
 import { FoodItemService } from "@/services/foodItemService";
 import ImageBubble from "@/components/ImageBubble";
 import ChatBubble from "@/components/ChatBubble";
+import { useAppContext } from "@/store/AppContext";
 
 export default function ChatScreen() {
   const onSubmit = (data: any) => console.log(data);
-
+  const { state, dispatch } = useAppContext();
   const items = FoodItemService.getMenuItems();
 
   return (
@@ -20,7 +21,7 @@ export default function ChatScreen() {
           />
         </View>
         <ChatBubble text="Based on your preferences, here's what I would suggest to eat!" />
-
+        <ChatBubble text={state.suggestionDiet + " " + state.suggestionComment} />
         <ImageBubble foodItem={items.at(0)!!} />
         <ChatBubble text="Or are you in the mood for this one? :)" />
         <ImageBubble foodItem={items.at(1)!!} />
