@@ -7,6 +7,10 @@ export default function HistoryLayout() {
         name="order-history"
         options={{ headerShown: false, title: "History" }}
       />
+      <Stack.Screen
+        name="order-details"
+        options={{ headerShown: true, title: "Details" }}
+      />
     </Stack>
   );
 }
