@@ -12,7 +12,7 @@ import uuid from "react-native-uuid";
 export default function DetailsScreen() {
   const { state, dispatch } = useAppContext();
   const foodItem = state.selectedFoodItem as FoodItem;
-  const [itemCount, setItemCount] = useState(0);
+  const [itemCount, setItemCount] = useState(1);
   const [note, setNote] = useState("");
 
   const handleCountChange = (newValue: number) => {
@@ -49,7 +49,10 @@ export default function DetailsScreen() {
       <Text style={{ textAlign: "justify" }}>
         {state.selectedFoodItem?.description}
       </Text>
-      <Text style={styles.title}>Allergens</Text>
+      {state.selectedFoodItem &&
+        state.selectedFoodItem?.allergens.length > 0 && (
+          <Text style={styles.title}>Allergens</Text>
+        )}
       <View style={styles.allergencontainer}>
         {state.selectedFoodItem?.allergens.map((allergen, index) => (
           <View style={styles.allergen} key={index}>
@@ -59,7 +62,7 @@ export default function DetailsScreen() {
         ))}
       </View>
       <View style={styles.formcontainer}>
-        <ItemCountSelector onValueChange={handleCountChange} />
+        <ItemCountSelector onValueChange={handleCountChange} min={1} />
         <Button onPress={onAddToCartPressed}>Add to cart</Button>
         <Input
           style={styles.textarea}
@@ -117,6 +120,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     gap: 10,
     flexBasis: "45%",
+    alignItems: "center",
   },
   formcontainer: {
     display: "flex",

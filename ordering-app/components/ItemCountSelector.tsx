@@ -19,7 +19,7 @@ const ItemCountSelector: React.FC<ItemCountSelectorProps> = ({
   onValueChange,
 }) => {
   // Initialize the state with the initial value
-  const [value, setValue] = useState(initialValue);
+  const [value, setValue] = useState(initialValue > min ? initialValue : min);
 
   // Function to handle incrementing the value
   const incrementValue = () => {
