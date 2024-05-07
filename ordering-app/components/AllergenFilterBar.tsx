@@ -44,7 +44,6 @@ const AllergenFilterBar: FC<AllergenFilterBarProps> = ({}) => {
     <View style={styles.container}>
       <View style={styles.itemcontainer}>
         {Object.values(Allergens).map((allergen, index) => (
-          <>
             <View style={styles.buttoncontainer} key={index}>
               <View style={styles.bg}>
                 <Button
@@ -65,7 +64,6 @@ const AllergenFilterBar: FC<AllergenFilterBarProps> = ({}) => {
                   allergen.toString().slice(1)}
               </Text>
             </View>
-          </>
         ))}
       </View>
     </View>
