@@ -17,16 +17,16 @@ const OrderHistoryCard = ({ orderHistory }: { orderHistory: OrderHistory }) => {
   return (
     <Card onPress={navigateToDetails} style={styles.card}>
       <Layout style={{ flexDirection: "row", justifyContent: "space-between" }}>
-        <Text category="c1" appearance="primary">
+        <Text category="s1" >
           Order #{orderHistory.id}
         </Text>
         <Text appearance="hint">{orderHistory.date.toLocaleString()}</Text>
       </Layout>
       <Layout style={{ flexDirection: "row", justifyContent: "space-between" }}>
-        <Text category="c1" appearance="primary">
+        <Text category="s1" >
           {orderHistory.price} Ft
         </Text>
-        <Text category="c1" appearance="primary">
+        <Text category="s1" >
           {orderHistory.status}
         </Text>
       </Layout>

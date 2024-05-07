@@ -1,7 +1,7 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 import EditScreenInfo from "@/components/EditScreenInfo";
-import { Text, View } from "@/components/Themed";
+import { Text } from "@ui-kitten/components";
 import { router } from 'expo-router';
 import { Button } from "@ui-kitten/components";
 
@@ -18,8 +18,6 @@ export default function QrCodeScanScreen() {
       <Text style={styles.title}>QR Code Scan</Text>
       <View
         style={styles.separator}
-        lightColor="#eee"
-        darkColor="rgba(255,255,255,0.1)"
       />
     </View>
   );
