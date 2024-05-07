@@ -1,7 +1,7 @@
 import { Allergens } from "@/models/enums/allergens";
 import { Button, Text } from "@ui-kitten/components";
 import { FC, useState } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, TextStyle } from "react-native";
 import { AllergenBadge, AllergenHelpers } from "./AllergenBadge";
 import { useAppContext } from "@/store/AppContext";
 import theme from "../custom-theme.json";
@@ -31,22 +31,36 @@ const AllergenFilterBar: FC<AllergenFilterBarProps> = ({}) => {
     };
   };
 
+  const getTextStyles = (isAllergenAllowed: boolean): TextStyle => {
+    return {
+      color: "white",
+      fontWeight: "bold",
+      textDecorationLine: isAllergenAllowed ? "none" : "line-through",
+      textDecorationColor: "black",
+    };
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.itemcontainer}>
         {Object.values(Allergens).map((allergen, index) => (
           <>
             <View style={styles.buttoncontainer} key={index}>
-              <Button
-                size="tiny"
-                style={getButtonStyles(
-                  allergen,
-                  state.allowedAllergens.includes(allergen)
-                )}
-                accessoryLeft={<AllergenBadge allergen={allergen} backgroundVisible = {false}/>}
-                onPress={() => handleButtonPress(allergen)}
-              ></Button>
-              <Text style={styles.text}>
+              <View style={styles.bg}>
+                <Button
+                  size="tiny"
+                  style={getButtonStyles(
+                    allergen,
+                    state.allowedAllergens.includes(allergen)
+                  )}
+                  accessoryLeft={<AllergenBadge allergen={allergen} />}
+                  onPress={() => handleButtonPress(allergen)}
+                ></Button>
+              </View>
+
+              <Text
+                style={getTextStyles(state.allowedAllergens.includes(allergen))}
+              >
                 {allergen.toString().toUpperCase()[0] +
                   allergen.toString().slice(1)}
               </Text>
@@ -84,6 +98,12 @@ const styles = StyleSheet.create({
   text: {
     color: "white",
     fontWeight: "bold",
+    textDecorationLine: "line-through",
+    textDecorationColor: "red",
+  },
+  bg: {
+    backgroundColor: "white",
+    borderRadius: 50,
   },
 });
 
