@@ -103,13 +103,79 @@ export const orderDetails = [
     },
     { 
         id: 2,
-        orderedItems: [],
+        orderedItems: [
+            {
+                count: 2,
+                foodItem: {
+                    id: 2,
+                    name : "Greek Salad",
+                    price : 1600,
+                    type : "",
+                    allergens : [],
+                    diets : [],
+                    description : "",
+                    imageSource : require("./images/food/greek-salad.jpg")
+                },
+                priceSum: 3200,
+                note: "No tomatoes please",
+                id: 100,
+            },
+        ],
         statusMessage: "Your order is ready",
         statusImageSrc: require("./dump/waiter.jpg"),
     },
     { 
         id: 3,
-        orderedItems: [],
+        orderedItems: [
+            {
+                count: 1,
+                foodItem: {
+                    id: 2,
+                    name : "Falafel Wrap",
+                    price : 1600,
+                    type : "",
+                    allergens : [],
+                    diets : [],
+                    description : "",
+                    imageSource : require("./images/food/falafel-wrap.jpg")
+                },
+                priceSum: 1600,
+                note: "No spicy please",
+                id: 100,
+            },
+            {
+                count: 2,
+                foodItem: {
+                    id: 5,
+                    name : "Quinoa Salad",
+                    price : 1700,
+                    type : "",
+                    allergens : [],
+                    diets : [],
+                    description : "",
+                    imageSource : require("./images/food/quinoa-salad.jpg")
+                },
+                priceSum: 1700,
+                note: "",
+                id: 200,
+            },
+            {
+                count: 3,
+                foodItem: {
+                    id: 5,
+                    name : "French Fries",
+                    price : 800,
+                    type : "",
+                    allergens : [],
+                    diets : [],
+                    description : "",
+                    imageSource : require("./images/food/french-fries.jpg")
+                },
+                priceSum: 2400,
+                note: "",
+                id: 300,
+            },
+        ],
         statusMessage: "Your order is ready",
         statusImageSrc: require("./dump/waiter.jpg"),
     },
