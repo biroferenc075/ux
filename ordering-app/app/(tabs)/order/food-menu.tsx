@@ -15,8 +15,15 @@ export default function FoodMenuScreen() {
 
   useEffect(() => {
     const items = FoodItemService.getMenuItems();
-    setMenuItems(items);
-  }, []);
+    setMenuItems(applyAllergenFilters(items));
+  }, [state.allowedAllergens]);
+
+  const applyAllergenFilters = (items: FoodItem[]) => {
+    const allowedAllergens = state.allowedAllergens;
+    return items.filter((item) =>
+      item.allergens.every((allergen) => allowedAllergens.includes(allergen))
+    );
+  };
 
   const renderFoodItemsForType = (type: FoodItemTypes) => {
     return menuItems

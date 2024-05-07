@@ -15,8 +15,6 @@ const getSrc = (allergen: Allergens) => {
       return require("../assets/images/icons/gluten.gif");
     case Allergens.nuts:
       return require("../assets/images/icons/nuts.gif");
-    case Allergens.shellfish:
-      return require("../assets/images/icons/shellfish.gif");
     case Allergens.soy:
       return require("../assets/images/icons/soy.gif");
     case Allergens.fish:
@@ -29,13 +27,11 @@ const getColor = (allergen: Allergens) => {
     case Allergens.dairy:
       return "#2AD2FF";
     case Allergens.eggs:
-      return "#6C6549";
+      return "#FF3D3D";
     case Allergens.gluten:
       return "#A3843A";
     case Allergens.nuts:
       return "#5A4925";
-    case Allergens.shellfish:
-      return "#FF3D3D";
     case Allergens.soy:
       return "#2F723A";
     case Allergens.fish:

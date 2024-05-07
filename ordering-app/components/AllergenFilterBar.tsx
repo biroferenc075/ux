@@ -4,6 +4,7 @@ import { FC, useState } from "react";
 import { View, StyleSheet } from "react-native";
 import { AllergenBadge, AllergenHelpers } from "./AllergenBadge";
 import { useAppContext } from "@/store/AppContext";
+import theme from "../custom-theme.json";
 
 interface AllergenFilterBarProps {}
 
@@ -22,10 +23,11 @@ const AllergenFilterBar: FC<AllergenFilterBarProps> = ({}) => {
     return {
       backgroundColor: AllergenHelpers.getColor(allergen),
       borderRadius: 50,
-      borderWidth: 0,
+      borderWidth: 1,
       opacity: isAllergenAllowed ? 1 : 0.4,
       width: 45,
       height: 45,
+      borderColor: "white",
     };
   };
 
@@ -44,7 +46,7 @@ const AllergenFilterBar: FC<AllergenFilterBarProps> = ({}) => {
                 accessoryLeft={<AllergenBadge allergen={allergen} />}
                 onPress={() => handleButtonPress(allergen)}
               ></Button>
-              <Text>
+              <Text style={styles.text}>
                 {allergen.toString().toUpperCase()[0] +
                   allergen.toString().slice(1)}
               </Text>
@@ -60,7 +62,7 @@ const styles = StyleSheet.create({
   container: {
     paddingBottom: 20,
     paddingTop: 40,
-    backgroundColor: "#ffad7a",
+    backgroundColor: theme["color-primary-500"],
   },
   itemcontainer: {
     display: "flex",
@@ -69,7 +71,7 @@ const styles = StyleSheet.create({
     overflow: "scroll",
     width: "100%",
     justifyContent: "center",
-    gap: 6,
+    gap: 12,
     alignItems: "center",
   },
 
@@ -77,6 +79,11 @@ const styles = StyleSheet.create({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+  },
+
+  text: {
+    color: "white",
+    fontWeight: "bold",
   },
 });
 
