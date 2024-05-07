@@ -4,6 +4,8 @@ interface ChatBubbleProps {
   text: string;
 }
 
+import theme from "../custom-theme.json";
+
 const ChatBubble: React.FC<ChatBubbleProps> = ({ text }) => {
   return (
     <View style={styles.chatBubble}>
@@ -14,7 +16,7 @@ const ChatBubble: React.FC<ChatBubbleProps> = ({ text }) => {
 
 const styles = StyleSheet.create({
   chatBubble: {
-    backgroundColor: "lavender",
+    backgroundColor: theme["color-primary-200"],
     borderRadius: 30,
     alignContent: "flex-end",
     padding: 15,

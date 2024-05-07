@@ -3,6 +3,7 @@ import { View, StyleSheet, Image } from "react-native";
 
 interface AllergenBadgeProps {
   allergen: Allergens;
+  backgroundVisible?: boolean;
 }
 
 const getSrc = (allergen: Allergens) => {
@@ -39,10 +40,14 @@ const getColor = (allergen: Allergens) => {
   }
 };
 
-export const AllergenBadge: React.FC<AllergenBadgeProps> = ({ allergen }) => {
+export const AllergenBadge: React.FC<AllergenBadgeProps> = ({ allergen, backgroundVisible = true }) => {
   const getStyle = () => {
-    return {
+    return backgroundVisible ? {
       backgroundColor: getColor(allergen),
+      height: 30,
+      width: 30,
+      borderRadius: 50,
+    } : {
       height: 30,
       width: 30,
       borderRadius: 50,

@@ -1,5 +1,6 @@
 import { CartItem } from "@/models/cartItem";
 import { Allergens } from "@/models/enums/allergens";
+import { Diets } from "@/models/enums/diets";
 import { FoodItem } from "@/models/foodItem";
 import { OrderHistory } from "@/models/orderHistory";
 import { OrderService } from "@/services/orderService";
@@ -11,11 +12,13 @@ interface AppState {
   orderHistory: Array<OrderHistory>;
   tableNumber: number | undefined;
   allowedAllergens: Allergens[];
+  suggestionDiet: Diets;
+  suggestionComment: string;
 }
 
 interface Action {
   type: string;
-  payload: CartItem | FoodItem | number | Allergens;
+  payload: CartItem | FoodItem | number | Allergens | Diets | string;
 }
 
 export interface AppContextType {
@@ -29,6 +32,8 @@ const initialState: AppState = {
   orderHistory: OrderService.getOrderHistory(),
   tableNumber: undefined,
   allowedAllergens: Object.values(Allergens),
+  suggestionDiet: Diets.meat_eater,
+  suggestionComment: ""
 };
 
 const AppContext = createContext<AppContextType>({
@@ -88,6 +93,16 @@ const appReducer = (state: AppState, action: Action): AppState => {
         allowedAllergens: state.allowedAllergens.filter(
           (item) => item.valueOf() !== (action.payload as Allergens).valueOf()
         ),
+      };
+    case "SET_SUGGESTION_DIET":
+      return {
+        ...state,
+        suggestionDiet: action.payload as Diets,
+      };
+    case "SET_SUGGESTION_COMMENT":
+      return {
+        ...state,
+        suggestionComment: action.payload as string,
       };
     default:
       return state;

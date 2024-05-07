@@ -53,7 +53,7 @@ const AllergenFilterBar: FC<AllergenFilterBarProps> = ({}) => {
                     allergen,
                     state.allowedAllergens.includes(allergen)
                   )}
-                  accessoryLeft={<AllergenBadge allergen={allergen} />}
+                  accessoryLeft={<AllergenBadge allergen={allergen}  backgroundVisible = {false}/>}
                   onPress={() => handleButtonPress(allergen)}
                 ></Button>
               </View>
