@@ -1,9 +1,9 @@
 import React from "react";
 import { Tabs } from "expo-router";
-
 import Colors from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { FontAwesome5 } from "@expo/vector-icons";
+import theme from "../../custom-theme.json";
 
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 function TabBarIcon(props: {
@@ -29,8 +29,9 @@ export default function TabLayout() {
         name="order"
         options={{
           title: "Order",
+          headerTintColor: theme["color-primary-500"],
           tabBarIcon: ({ color }) => (
-            <TabBarIcon name="hamburger" color={color} />
+            <TabBarIcon name="hamburger" color={theme["color-primary-500"]} />
           ),
         }}
       />
@@ -39,7 +40,10 @@ export default function TabLayout() {
         options={{
           title: "Cart",
           tabBarIcon: ({ color }) => (
-            <TabBarIcon name="shopping-basket" color={color} />
+            <TabBarIcon
+              name="shopping-basket"
+              color={theme["color-primary-500"]}
+            />
           ),
         }}
       />
@@ -48,7 +52,7 @@ export default function TabLayout() {
         options={{
           title: "History",
           tabBarIcon: ({ color }) => (
-            <TabBarIcon name="receipt" color={color} />
+            <TabBarIcon name="receipt" color={theme["color-primary-500"]} />
           ),
         }}
       />
@@ -57,7 +61,7 @@ export default function TabLayout() {
         options={{
           title: "Suggestion",
           tabBarIcon: ({ color }) => (
-            <TabBarIcon name="lightbulb" color={color} />
+            <TabBarIcon name="lightbulb" color={theme["color-primary-500"]} />
           ),
         }}
       />

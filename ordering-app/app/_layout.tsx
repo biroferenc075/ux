@@ -1,9 +1,4 @@
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-import {
-  DarkTheme,
-  DefaultTheme,
-  ThemeProvider,
-} from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
@@ -12,7 +7,7 @@ import * as eva from "@eva-design/eva";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { ApplicationProvider } from "@ui-kitten/components";
 import { AppProvider } from "@/store/AppContext";
-import { default as theme } from '../custom-theme.json';
+import { default as theme } from "../custom-theme.json";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -55,12 +50,12 @@ function RootLayoutNav() {
   const colorScheme = useColorScheme();
 
   return (
-    <ApplicationProvider {...eva} theme={{...eva.light, ...theme}}>
-        <AppProvider>
-          <Stack>
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          </Stack>
-        </AppProvider>
+    <ApplicationProvider {...eva} theme={{ ...eva.light, ...theme }}>
+      <AppProvider>
+        <Stack>
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        </Stack>
+      </AppProvider>
     </ApplicationProvider>
   );
 }

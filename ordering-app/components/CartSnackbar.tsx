@@ -2,6 +2,7 @@ import { Animated, Pressable, StyleSheet, View } from "react-native";
 import { Text } from "@ui-kitten/components";
 import { router } from "expo-router";
 import { useAppContext } from "@/store/AppContext";
+import theme from "../custom-theme.json";
 
 interface ICartSnackbarProps {}
 
@@ -40,19 +41,19 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     padding: 16,
-    backgroundColor: "gray",
+    backgroundColor: "lightgray",
     borderRadius: 4,
     zIndex: 1000,
   },
   message: {
     flex: 1,
-    color: "white",
+    color: "black",
   },
   button: {
     paddingLeft: 16,
   },
   actionLabel: {
-    color: "blue",
+    color: theme["color-primary-500"],
     fontWeight: "bold",
   },
 });
