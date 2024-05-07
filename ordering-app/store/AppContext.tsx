@@ -85,9 +85,9 @@ const appReducer = (state: AppState, action: Action): AppState => {
     case "REMOVE_ALLOWED_ALLERGEN":
       return {
         ...state,
-        allowedAllergens: state.allowedAllergens.filter((item) => {
-          item.valueOf() !== (action.payload as Allergens).valueOf();
-        }),
+        allowedAllergens: state.allowedAllergens.filter(
+          (item) => item.valueOf() !== (action.payload as Allergens).valueOf()
+        ),
       };
     default:
       return state;

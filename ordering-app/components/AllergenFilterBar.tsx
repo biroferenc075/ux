@@ -1,5 +1,5 @@
 import { Allergens } from "@/models/enums/allergens";
-import { Button } from "@ui-kitten/components";
+import { Button, Text } from "@ui-kitten/components";
 import { FC, useState } from "react";
 import { View, StyleSheet } from "react-native";
 import { AllergenBadge, AllergenHelpers } from "./AllergenBadge";
@@ -22,38 +22,59 @@ const AllergenFilterBar: FC<AllergenFilterBarProps> = ({}) => {
     return {
       backgroundColor: AllergenHelpers.getColor(allergen),
       borderRadius: 50,
-      padding: 0,
-      margin: 4,
       borderWidth: 0,
       opacity: isAllergenAllowed ? 1 : 0.4,
+      width: 45,
+      height: 45,
     };
   };
 
   return (
     <View style={styles.container}>
-      {Object.values(Allergens).map((allergen, index) => (
-        <Button
-          size="tiny"
-          key={index}
-          style={getButtonStyles(
-            allergen,
-            state.allowedAllergens.includes(allergen)
-          )}
-          accessoryLeft={<AllergenBadge allergen={allergen} />}
-          onPress={() => handleButtonPress(allergen)}
-        ></Button>
-      ))}
+      <View style={styles.itemcontainer}>
+        {Object.values(Allergens).map((allergen, index) => (
+          <>
+            <View style={styles.buttoncontainer} key={index}>
+              <Button
+                size="tiny"
+                style={getButtonStyles(
+                  allergen,
+                  state.allowedAllergens.includes(allergen)
+                )}
+                accessoryLeft={<AllergenBadge allergen={allergen} />}
+                onPress={() => handleButtonPress(allergen)}
+              ></Button>
+              <Text>
+                {allergen.toString().toUpperCase()[0] +
+                  allergen.toString().slice(1)}
+              </Text>
+            </View>
+          </>
+        ))}
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
+    paddingBottom: 20,
+    paddingTop: 40,
+    backgroundColor: "#ffad7a",
+  },
+  itemcontainer: {
     display: "flex",
+    flexWrap: "wrap",
     flexDirection: "row",
     overflow: "scroll",
     width: "100%",
-    marginTop: 40,
+    justifyContent: "center",
+    gap: 6,
+    alignItems: "center",
+  },
+
+  buttoncontainer: {
+    display: "flex",
     justifyContent: "center",
     alignItems: "center",
   },
