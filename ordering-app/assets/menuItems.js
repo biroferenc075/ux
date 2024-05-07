@@ -287,7 +287,7 @@ export const menuItems = [
     },
     {
         "name" : "Cappuccino",
-        "price" : 2200,
+        "price" : 900,
         "type" : "drink",
         "allergens" : ["dairy"],
         "diets" : ["vegetarian","pescatarian","meat_eater"],

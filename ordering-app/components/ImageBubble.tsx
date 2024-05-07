@@ -3,6 +3,7 @@ import { useAppContext } from "@/store/AppContext";
 import { router } from "expo-router";
 import { View, Pressable, StyleSheet, Image } from "react-native";
 import { Text } from "@ui-kitten/components";
+import theme from "../custom-theme.json";
 
 interface ImageBubbleProps {
   foodItem: FoodItem;
@@ -44,7 +45,7 @@ const styles = StyleSheet.create({
   },
 
   imageBubble: {
-    backgroundColor: "lavender",
+    backgroundColor: theme["color-primary-200"],
     borderRadius: 30,
     padding: 15,
     width: "auto",
@@ -69,8 +70,10 @@ const styles = StyleSheet.create({
   },
 
   imagecontainer: {
-    height: 120,
+    height: 140,
+    width: 140,
     borderRadius: 10,
+    alignSelf: "center"
   },
 
   textcontainer: {

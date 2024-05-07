@@ -1,4 +1,4 @@
-import { View, Image, ScrollView, StyleSheet } from "react-native";
+import { Animated, View, Image, ScrollView, StyleSheet } from "react-native";
 import React from "react";
 import { Text, Button, CheckBox, Divider, IndexPath, Select, SelectItem, Input } from "@ui-kitten/components";
 import { useForm, Controller, Form } from "react-hook-form";
@@ -54,8 +54,8 @@ export default function SuggestionScreen() {
   });
 
 
-  const dietArr = [Diets.meat_eater, Diets.pescatarian, Diets.vegan, Diets.vegetarian]
-  const displDietArr = ["None", "Pescatarian", "Vegan", "Vegetarian"]
+  const dietArr = [Diets.meat_eater, Diets.pescatarian, Diets.vegetarian, Diets.vegan,]
+  const displDietArr = ["None", "Pescatarian", "Vegetarian", "Vegan"]
   
 
   return (
