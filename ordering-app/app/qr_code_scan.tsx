@@ -4,11 +4,15 @@ import EditScreenInfo from "@/components/EditScreenInfo";
 import { Text } from "@ui-kitten/components";
 import { router } from 'expo-router';
 import { Button } from "@ui-kitten/components";
+import { useAppContext } from "@/store/AppContext";
 
 
 export default function QrCodeScanScreen() {
+  const { state, dispatch } = useAppContext();
+
   const onSuccess = (e : any) => {
-      router.navigate("/history/order-details")
+      dispatch({ type: "SET_TABLE_NUMBER", payload: Math.floor(Math.random() * 20)})
+      router.navigate("/cart")
   };
 
   setTimeout(onSuccess, 1000);

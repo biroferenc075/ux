@@ -32,7 +32,7 @@ export default function CartScreen() {
           )}
           <View style={styles.buttoncontainer}>
             {state.tableNumber ? (
-              <Text>Table</Text>
+              <Text>Table {state.tableNumber}</Text>
             ) : (
               <Button onPress={() => router.navigate("/qr_code_scan")}>
                 Scan QR code!
@@ -68,6 +68,7 @@ const styles = StyleSheet.create({
     width: "100%",
     flexDirection: "row",
     justifyContent: "space-between",
+    backgroundColor: "#00000000"
   },
 
   text: {
