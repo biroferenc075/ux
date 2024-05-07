@@ -2,14 +2,14 @@ import { CartItem } from "@/models/cartItem";
 import { Allergens } from "@/models/enums/allergens";
 import { Diets } from "@/models/enums/diets";
 import { FoodItem } from "@/models/foodItem";
-import { OrderHistory } from "@/models/orderHistory";
+import { Order } from "@/models/order";
 import { OrderService } from "@/services/orderService";
 import { createContext, useContext, useReducer } from "react";
 
 interface AppState {
   selectedFoodItem: FoodItem | undefined;
   cart: Array<CartItem>;
-  orderHistory: Array<OrderHistory>;
+  orderHistory: Array<Order>;
   tableNumber: number | undefined;
   allowedAllergens: Allergens[];
   suggestionDiet: Diets;
@@ -33,7 +33,7 @@ const initialState: AppState = {
   tableNumber: undefined,
   allowedAllergens: Object.values(Allergens),
   suggestionDiet: Diets.meat_eater,
-  suggestionComment: ""
+  suggestionComment: "",
 };
 
 const AppContext = createContext<AppContextType>({
