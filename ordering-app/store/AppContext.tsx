@@ -1,3 +1,4 @@
+import { orderHistory } from "@/assets/order";
 import { CartItem } from "@/models/cartItem";
 import { Allergens } from "@/models/enums/allergens";
 import { Diets } from "@/models/enums/diets";
@@ -18,7 +19,7 @@ interface AppState {
 
 interface Action {
   type: string;
-  payload: CartItem | FoodItem | number | Allergens | Diets | string;
+  payload: CartItem | FoodItem | number | Allergens | Diets | string | Order;
 }
 
 export interface AppContextType {
@@ -29,7 +30,7 @@ export interface AppContextType {
 const initialState: AppState = {
   selectedFoodItem: undefined,
   cart: [],
-  orderHistory: OrderService.getOrderHistory(),
+  orderHistory: [], //OrderService.getOrderHistory(),
   tableNumber: undefined,
   allowedAllergens: Object.values(Allergens),
   suggestionDiet: Diets.meat_eater,
@@ -103,6 +104,11 @@ const appReducer = (state: AppState, action: Action): AppState => {
       return {
         ...state,
         suggestionComment: action.payload as string,
+      };
+    case "SUBMIT_ORDER":
+      return {
+        ...state,
+        orderHistory: [...state.orderHistory, action.payload as Order],
       };
     default:
       return state;
