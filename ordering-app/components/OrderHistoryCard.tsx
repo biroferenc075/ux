@@ -1,10 +1,10 @@
 import React from "react";
 import { Card, Layout, Text } from "@ui-kitten/components";
-import { OrderHistory } from "@/models/orderHistory";
 import { router } from "expo-router";
 import { StyleSheet } from "react-native";
+import { Order } from "@/models/order";
 
-const OrderHistoryCard = ({ orderHistory }: { orderHistory: OrderHistory }) => {
+const OrderHistoryCard = ({ orderHistory }: { orderHistory: Order }) => {
   const navigateToDetails = () => {
     router.navigate({
       pathname: "history/order-details",
