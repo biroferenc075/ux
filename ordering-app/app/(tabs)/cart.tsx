@@ -4,9 +4,26 @@ import { router } from "expo-router";
 import { Button, Text } from "@ui-kitten/components";
 import { useAppContext } from "@/store/AppContext";
 import CartItemCard from "@/components/CartItemCard";
+import { Order } from "@/models/order";
+import uuid from "react-native-uuid";
+import { OrderStatuses } from "@/models/enums/orderStatuses";
 
 export default function CartScreen() {
   const { state, dispatch } = useAppContext();
+
+  const onSubmitOrder = () => {
+    const order: Order = {
+      id: uuid.v4().toString(),
+      date: new Date(),
+      orderedItems: state.cart,
+      price: state.cart.reduce((acc, item) => {
+        return acc + item.priceSum;
+      }, 0),
+      status: OrderStatuses.preparing,
+    };
+    dispatch({ type: "SUBMIT_ORDER", payload: order });
+    dispatch({ type: "EMPTY_CART", payload: order });
+  };
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
@@ -38,7 +55,10 @@ export default function CartScreen() {
                 Scan QR code!
               </Button>
             )}
-            <Button disabled={typeof state.tableNumber == "undefined"}>
+            <Button
+              //disabled={typeof state.tableNumber == "undefined"}
+              onPress={onSubmitOrder}
+            >
               Order
             </Button>
           </View>

@@ -1,11 +1,10 @@
 import { CartItem } from "./cartItem";
+import { OrderStatuses } from "./enums/orderStatuses";
 
 export interface Order {
-  id: number;
+  id: string;
   date: Date;
   price: number;
-  status: string;
+  status: OrderStatuses;
   orderedItems: Array<CartItem>;
-  statusMessage: string;
-  statusImageSrc: any;
 }

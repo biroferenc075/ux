@@ -1,27 +1,55 @@
-import { OrderService } from "@/services/orderService";
 import { useLocalSearchParams } from "expo-router";
 import { ScrollView, StyleSheet, Image } from "react-native";
 import { Layout, Text } from "@ui-kitten/components";
 import { View } from "@/components/Themed";
 import OrderDetailsCard from "@/components/OrderDetailsCard";
+import { useAppContext } from "@/store/AppContext";
+import { OrderStatuses } from "@/models/enums/orderStatuses";
 
 export default function OrderDetailsScreen() {
   const { id } = useLocalSearchParams();
+  const { state } = useAppContext();
 
-  const details = OrderService.getOrderDetails(Number(id)); // todo get it from state
+  const order = state.orderHistory.find((item) => item.id == id)!;
+
+  const getOrderStatusMessage = (): string => {
+    switch (order.status) {
+      case OrderStatuses.preparing:
+        return "Let him cook";
+      case OrderStatuses.served:
+        return "He cooked";
+      case OrderStatuses.completed:
+        return "You already paid for this order.";
+    }
+  };
+
+  const getOrderStatusImageSrc = (): string => {
+    switch (order.status) {
+      case OrderStatuses.preparing:
+        return "Let him cook";
+      case OrderStatuses.served:
+        return "He cooked";
+      case OrderStatuses.completed:
+        return "You already paid for this order.";
+    }
+  };
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.section}>
         <View style={styles.imageContainer}>
-          <Image style={styles.image} source={details.statusImageSrc}></Image>
+          <Image
+            style={styles.image}
+            source={{ uri: getOrderStatusImageSrc() }}
+          ></Image>
         </View>
         <Text category="h5" style={{ paddingTop: 10 }}>
-          {details.statusMessage}
+          {getOrderStatusMessage()}
         </Text>
       </View>
       <View style={styles.separator} />
       <View style={styles.itemsContainer}>
-        {details.orderedItems.map((item) => (
+        {order.orderedItems.map((item) => (
           <OrderDetailsCard item={item} key={item.id} />
         ))}
       </View>
@@ -36,10 +64,7 @@ export default function OrderDetailsScreen() {
         >
           <Text category="h6">Total</Text>
           <Text category="h6">
-            {details.orderedItems.reduce(
-              (temp, item) => temp + item.priceSum,
-              0
-            )}{" "}
+            {order.orderedItems.reduce((temp, item) => temp + item.priceSum, 0)}{" "}
             Ft
           </Text>
         </Layout>

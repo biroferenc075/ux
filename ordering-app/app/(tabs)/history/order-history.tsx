@@ -1,5 +1,4 @@
 import OrderHistoryCard from "@/components/OrderHistoryCard";
-import { OrderHistory } from "@/models/orderHistory";
 import { useAppContext } from "@/store/AppContext";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { Text } from "@ui-kitten/components";
@@ -11,7 +10,7 @@ export default function OrderHistoryScreen() {
     <>
       <ScrollView contentContainerStyle={styles.container}>
         <Text style={styles.header}>Order History</Text>
-        {state.orderHistory.map((item: OrderHistory) => (
+        {state.orderHistory.map((item) => (
           <OrderHistoryCard orderHistory={item} key={item.id} />
         ))}
       </ScrollView>
