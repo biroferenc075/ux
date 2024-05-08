@@ -110,7 +110,8 @@ export default function SuggestionScreen() {
       <Text style={styles.title} category="h4">
         Can't decide? Let me help!
       </Text>
-      <Text style={styles.subheader}>Which allergens are a no-go?</Text>
+      <Text style={styles.subheader}>Which allergens are no-go?</Text>
+      <Text style={styles.subheader_under}>Click on their icons!</Text>
       <AllergenSelector />
       <Text style={styles.subheader}>Are you on a special diet?</Text>
       <Controller
@@ -196,6 +197,14 @@ const styles = StyleSheet.create({
     fontSize: 18,
     width: "80%",
     marginTop: -10,
+    marginBottom: -5,
+    textAlign: "center",
+  },
+
+  subheader_under: {
+    fontSize: 18,
+    width: "80%",
+    marginTop: -20,
     marginBottom: -5,
     textAlign: "center",
   },

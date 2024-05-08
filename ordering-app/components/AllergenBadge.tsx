@@ -28,15 +28,15 @@ const getColor = (allergen: Allergens) => {
     case Allergens.dairy:
       return "#2AD2FF";
     case Allergens.eggs:
-      return "#FF3D3D";
+      return "#f23f35";
     case Allergens.gluten:
-      return "#A3843A";
+      return "#f78000";
     case Allergens.nuts:
-      return "#5A4925";
+      return "#947751";
     case Allergens.soy:
       return "#2F723A";
     case Allergens.fish:
-      return "#2D68CF";
+      return "#597dba";
   }
 };
 
