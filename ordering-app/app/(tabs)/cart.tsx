@@ -10,8 +10,8 @@ import ShortUniqueId from "short-unique-id";
 
 export default function CartScreen() {
   const { state, dispatch } = useAppContext();
-  const uid = new ShortUniqueId({ length: 10 });
   const onSubmitOrder = () => {
+    const uid = new ShortUniqueId({ length: 6 });
     const order: Order = {
       id: uid.rnd(),
       date: new Date(),

@@ -4,7 +4,7 @@ import { FoodItemTypes } from "@/models/enums/foodItemTypes";
 import { Allergens } from "@/models/enums/allergens";
 import { Diets } from "@/models/enums/diets";
 import ShortUniqueId from "short-unique-id";
-const uid = new ShortUniqueId({ length: 10 });
+const uid = new ShortUniqueId({ length: 6 });
 export const orderHistory: Order[] = [
   {
     id: uid.rnd(),

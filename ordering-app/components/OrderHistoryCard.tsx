@@ -3,6 +3,7 @@ import { Card, Layout, Text } from "@ui-kitten/components";
 import { router } from "expo-router";
 import { StyleSheet } from "react-native";
 import { Order } from "@/models/order";
+import { DateHelper } from "@/helpers/dateHelper";
 
 const OrderHistoryCard = ({ orderHistory }: { orderHistory: Order }) => {
   const navigateToDetails = () => {
@@ -18,7 +19,9 @@ const OrderHistoryCard = ({ orderHistory }: { orderHistory: Order }) => {
     <Card onPress={navigateToDetails} style={styles.card}>
       <Layout style={{ flexDirection: "row", justifyContent: "space-between" }}>
         <Text category="s1">Order #{orderHistory.id}</Text>
-        <Text appearance="hint">{orderHistory.date.toLocaleString()}</Text>
+        <Text appearance="hint">
+          {DateHelper.formatDate(orderHistory.date)}
+        </Text>
       </Layout>
       <Layout style={{ flexDirection: "row", justifyContent: "space-between" }}>
         <Text category="s1">{orderHistory.price} Ft</Text>

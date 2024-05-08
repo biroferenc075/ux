@@ -24,7 +24,7 @@ export default function DetailsScreen() {
   };
 
   const onAddToCartPressed = () => {
-    const uid = new ShortUniqueId({ length: 10 });
+    const uid = new ShortUniqueId({ length: 6 });
     const cartItem: CartItem = {
       count: itemCount,
       foodItem: foodItem,

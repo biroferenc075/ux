@@ -5,6 +5,7 @@ import { View } from "@/components/Themed";
 import OrderDetailsCard from "@/components/OrderDetailsCard";
 import { useAppContext } from "@/store/AppContext";
 import { OrderStatuses } from "@/models/enums/orderStatuses";
+import { DateHelper } from "@/helpers/dateHelper";
 
 export default function OrderDetailsScreen() {
   const { id } = useLocalSearchParams();
@@ -41,13 +42,10 @@ export default function OrderDetailsScreen() {
           Order #{order.id}
         </Text>
         <Text style={{ fontSize: 14, marginBottom: 5 }}>
-          Placed on {order.date.toLocaleString()}
+          Placed on {DateHelper.formatDate(order.date)}
         </Text>
         <View style={styles.imageContainer}>
-          <Image
-            style={styles.image}
-            source={getOrderStatusImageSrc()}
-          ></Image>
+          <Image style={styles.image} source={getOrderStatusImageSrc()}></Image>
         </View>
         <Text
           category="h5"
@@ -97,7 +95,7 @@ const styles = StyleSheet.create({
   image: {
     width: "100%",
     height: "100%",
-    resizeMode: "stretch"
+    resizeMode: "stretch",
   },
   imageContainer: {
     width: 200,
@@ -106,13 +104,13 @@ const styles = StyleSheet.create({
     borderColor: "#ddd",
     borderRadius: 20,
     overflow: "hidden",
-    backgroundColor: "#0000"
+    backgroundColor: "#0000",
   },
   section: {
     alignItems: "center",
     justifyContent: "center",
     paddingVertical: 20,
-    backgroundColor: "#0000"
+    backgroundColor: "#0000",
   },
   separator: {
     borderBottomWidth: 2,
