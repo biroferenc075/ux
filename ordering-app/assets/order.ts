@@ -9,7 +9,7 @@ export const orderHistory: Order[] = [
   {
     id: uid.rnd(),
     date: new Date("2024-05-05T20:20:00"),
-    price: 4000,
+    price: 4800,
     status: OrderStatuses.preparing,
     orderedItems: [
       {
@@ -41,7 +41,7 @@ export const orderHistory: Order[] = [
             "A classic Italian pizza topped with tomato sauce, mozzarella cheese, and fresh basil.",
           imageSrc: require("./images/food/margherita-pizza.jpg"),
         },
-        priceSum: 5000,
+        priceSum: 3000,
         note: "Extra cheese",
       },
     ],
@@ -49,7 +49,7 @@ export const orderHistory: Order[] = [
   {
     id: uid.rnd(),
     date: new Date("2024-05-05T20:20:00"),
-    price: 4000,
+    price: 4800,
     status: OrderStatuses.served,
     orderedItems: [
       {
@@ -81,7 +81,7 @@ export const orderHistory: Order[] = [
             "A classic Italian pizza topped with tomato sauce, mozzarella cheese, and fresh basil.",
           imageSrc: require("./images/food/margherita-pizza.jpg"),
         },
-        priceSum: 5000,
+        priceSum: 3000,
         note: "Extra cheese",
       },
     ],
@@ -89,7 +89,7 @@ export const orderHistory: Order[] = [
   {
     id: uid.rnd(),
     date: new Date("2024-05-05T20:20:00"),
-    price: 4000,
+    price: 4800,
     status: OrderStatuses.completed,
     orderedItems: [
       {
@@ -121,7 +121,7 @@ export const orderHistory: Order[] = [
             "A classic Italian pizza topped with tomato sauce, mozzarella cheese, and fresh basil.",
           imageSrc: require("./images/food/margherita-pizza.jpg"),
         },
-        priceSum: 5000,
+        priceSum: 3000,
         note: "Extra cheese",
       },
     ],
