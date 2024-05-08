@@ -32,8 +32,8 @@ const styles = StyleSheet.create({
   container: {
     display: "flex",
     flexDirection: "row",
-    alignItems: "center",
     justifyContent: "center",
+    alignItems: "center",
     width: "100%",
     height: 100,
     position: "relative",
@@ -60,7 +60,6 @@ const styles = StyleSheet.create({
 
   infocontainer: {
     width: "70%",
-    height: 150,
     padding: 10,
   },
 

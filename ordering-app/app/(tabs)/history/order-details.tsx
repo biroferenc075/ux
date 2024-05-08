@@ -15,35 +15,41 @@ export default function OrderDetailsScreen() {
   const getOrderStatusMessage = (): string => {
     switch (order.status) {
       case OrderStatuses.preparing:
-        return "Let him cook";
+        return "Our chefs are working hard to prepare your order!";
       case OrderStatuses.served:
-        return "He cooked";
+        return "Enjoy your meal!";
       case OrderStatuses.completed:
-        return "You already paid for this order.";
+        return "You already paid for this order. See you next time!";
     }
   };
 
   const getOrderStatusImageSrc = (): string => {
     switch (order.status) {
       case OrderStatuses.preparing:
-        return "Let him cook";
+        return "Our chefs are working hard to prepare your order!";
       case OrderStatuses.served:
-        return "He cooked";
+        return "Enjoy your meal!";
       case OrderStatuses.completed:
-        return "You already paid for this order.";
+        return "You already paid for this order. See you next time!";
     }
   };
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.section}>
+        <Text style={{ fontSize: 16, fontWeight: "bold", marginBottom: 5 }}>
+          Order #{order.id}
+        </Text>
+        <Text style={{ fontSize: 14, marginBottom: 5 }}>
+          Placed on {order.date.toLocaleString()}
+        </Text>
         <View style={styles.imageContainer}>
           <Image
             style={styles.image}
             source={{ uri: getOrderStatusImageSrc() }}
           ></Image>
         </View>
-        <Text category="h5" style={{ paddingTop: 10 }}>
+        <Text category="h5" style={{ paddingTop: 10, textAlign: "center" }}>
           {getOrderStatusMessage()}
         </Text>
       </View>
@@ -62,8 +68,10 @@ export default function OrderDetailsScreen() {
             padding: 20,
           }}
         >
-          <Text category="h6">Total</Text>
-          <Text category="h6">
+          <Text category="h6" style={{ fontSize: 16 }}>
+            Total
+          </Text>
+          <Text category="h6" style={{ fontSize: 16 }}>
             {order.orderedItems.reduce((temp, item) => temp + item.priceSum, 0)}{" "}
             Ft
           </Text>
@@ -75,9 +83,10 @@ export default function OrderDetailsScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    display: "flex",
     padding: 10,
     backgroundColor: "#fff",
+    minHeight: "100%",
   },
   image: {
     width: 200,

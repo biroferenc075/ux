@@ -1,13 +1,14 @@
 import { OrderStatuses } from "@/models/enums/orderStatuses";
 import { Order } from "../models/order";
-import uuid from "react-native-uuid";
+import "react-native-get-random-values";
+import { nanoid } from "nanoid";
 import { FoodItemTypes } from "@/models/enums/foodItemTypes";
 import { Allergens } from "@/models/enums/allergens";
 import { Diets } from "@/models/enums/diets";
 
 export const orderHistory: Order[] = [
   {
-    id: "44004401",
+    id: nanoid(10),
     date: new Date("2024-05-05T20:20:00"),
     price: 4000,
     status: OrderStatuses.preparing,
@@ -26,10 +27,10 @@ export const orderHistory: Order[] = [
         },
         priceSum: 1800,
         note: "No spicy please",
-        id: "103400545",
+        id: nanoid(10),
       },
       {
-        id: "f3131ija",
+        id: nanoid(10),
         count: 2,
         foodItem: {
           name: "Margherita Pizza",
@@ -47,7 +48,7 @@ export const orderHistory: Order[] = [
     ],
   },
   {
-    id: "3131515a",
+    id: nanoid(10),
     date: new Date("2024-05-05T20:20:00"),
     price: 4000,
     status: OrderStatuses.preparing,
@@ -66,10 +67,10 @@ export const orderHistory: Order[] = [
         },
         priceSum: 1800,
         note: "No spicy please",
-        id: "3141510",
+        id: nanoid(10),
       },
       {
-        id: "10045asfa",
+        id: nanoid(10),
         count: 2,
         foodItem: {
           name: "Margherita Pizza",
@@ -87,7 +88,7 @@ export const orderHistory: Order[] = [
     ],
   },
   {
-    id: "agaga232e1",
+    id: nanoid(10),
     date: new Date("2024-05-05T20:20:00"),
     price: 4000,
     status: OrderStatuses.preparing,
@@ -109,7 +110,7 @@ export const orderHistory: Order[] = [
         id: "30adgaga",
       },
       {
-        id: "30adgaa002e",
+        id: nanoid(10),
         count: 2,
         foodItem: {
           name: "Margherita Pizza",

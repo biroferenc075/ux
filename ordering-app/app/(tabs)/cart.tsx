@@ -5,15 +5,16 @@ import { Button, Text } from "@ui-kitten/components";
 import { useAppContext } from "@/store/AppContext";
 import CartItemCard from "@/components/CartItemCard";
 import { Order } from "@/models/order";
-import uuid from "react-native-uuid";
 import { OrderStatuses } from "@/models/enums/orderStatuses";
+import "react-native-get-random-values";
+import { nanoid } from "nanoid";
 
 export default function CartScreen() {
   const { state, dispatch } = useAppContext();
 
   const onSubmitOrder = () => {
     const order: Order = {
-      id: uuid.v4().toString(),
+      id: nanoid(10),
       date: new Date(),
       orderedItems: state.cart,
       price: state.cart.reduce((acc, item) => {
@@ -88,7 +89,7 @@ const styles = StyleSheet.create({
     width: "100%",
     flexDirection: "row",
     justifyContent: "space-between",
-    backgroundColor: "#00000000"
+    backgroundColor: "#00000000",
   },
 
   text: {
