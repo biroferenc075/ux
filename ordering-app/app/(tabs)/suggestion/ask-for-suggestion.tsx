@@ -1,4 +1,4 @@
-import { Animated, View, Image, ScrollView, StyleSheet } from "react-native";
+import { View, Image, ScrollView, StyleSheet } from "react-native";
 import React from "react";
 import {
   Text,
@@ -12,57 +12,12 @@ import {
 } from "@ui-kitten/components";
 import { useForm, Controller, Form } from "react-hook-form";
 import { Diets } from "@/models/enums/diets";
-import { Allergens } from "@/models/enums/allergens";
 import { router } from "expo-router";
 import { useAppContext } from "@/store/AppContext";
 import AllergenSelector from "@/components/AllergenSelector";
-import { CohereClient } from "cohere-ai";
 
 export default function SuggestionScreen() {
-  const API_KEY = "eCTGq8szKXxxnmSDRO1oCAi9rPugl2aLlM7Ai0ru";
-  const cohere = new CohereClient({
-    token: API_KEY,
-  });
-
   const { state, dispatch } = useAppContext();
-
-  const getSuggestion = async () => {
-    const chat = await cohere.chat({
-      message:
-        "Give me two recommendations of the following foods: Pizza, Salad, Macaroni. " + // todo provide the filtered items
-        `${
-          state.suggestionComment.length > 0
-            ? `Consider this too: ${state.suggestionComment}. `
-            : ""
-        }` +
-        "Answer with only the foods' names that I provided, separated by a comma. No other word.",
-    });
-
-    console.log(chat.text);
-  };
-
-  const getChecked = (cbName: string, values: string[]) => {
-    return values.includes(cbName);
-  };
-  const handleChange = (
-    allergen: Allergens,
-    values: string[],
-    newValue: boolean
-  ) => {
-    if (!newValue) {
-      values.splice(values.indexOf(allergen), 1);
-    } else {
-      values.push(allergen);
-    }
-
-    if (state.allowedAllergens.includes(allergen)) {
-      dispatch({ type: "REMOVE_ALLOWED_ALLERGEN", payload: allergen });
-    } else {
-      dispatch({ type: "ADD_ALLOWED_ALLERGEN", payload: allergen });
-    }
-
-    return values;
-  };
 
   const handleChangeDiet = (diet: Diets) => {
     dispatch({ type: "SET_SUGGESTION_DIET", payload: diet });
@@ -72,13 +27,8 @@ export default function SuggestionScreen() {
     dispatch({ type: "SET_SUGGESTION_COMMENT", payload: comment });
   };
 
-  const allergenDisplay = (all: Allergens) => {
-    return all.charAt(0).toUpperCase() + all.slice(1);
-  };
-
   const {
     control,
-    handleSubmit,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -161,7 +111,6 @@ export default function SuggestionScreen() {
       <Button
         style={styles.button}
         onPress={() => {
-          getSuggestion();
           router.navigate({ pathname: "suggestion/chat" });
         }}
       >

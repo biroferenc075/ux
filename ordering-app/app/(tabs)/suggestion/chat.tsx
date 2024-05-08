@@ -1,60 +1,106 @@
-import { View, Image, ScrollView, StyleSheet } from "react-native";
+import {
+  View,
+  Image,
+  ScrollView,
+  StyleSheet,
+  ActivityIndicator,
+} from "react-native";
 import React, { useEffect, useState } from "react";
-import { Button } from "@ui-kitten/components";
+import { Button, Text } from "@ui-kitten/components";
 import { FoodItemService } from "@/services/foodItemService";
 import ImageBubble from "@/components/ImageBubble";
 import ChatBubble from "@/components/ChatBubble";
 import { useAppContext } from "@/store/AppContext";
 import { FoodItem } from "@/models/foodItem";
 import { FoodItemTypes } from "@/models/enums/foodItemTypes";
-
-function shuffle(array : FoodItem[]) {
-  let currentIndex = array.length;
-
-  // While there remain elements to shuffle...
-  while (currentIndex != 0) {
-
-    // Pick a remaining element...
-    let randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
-
-    // And swap it with the current element.
-    [array[currentIndex], array[randomIndex]] = [
-      array[randomIndex], array[currentIndex]];
-  }
-  return array;
-}
+import { CohereClient } from "cohere-ai";
+import { ChatMessage } from "cohere-ai/api";
 
 export default function ChatScreen() {
-  const onSubmit = (data: any) => {setItem1(filteredItems.pop()!!);setItem2(filteredItems.pop()!!);}
+  const API_KEY = "eCTGq8szKXxxnmSDRO1oCAi9rPugl2aLlM7Ai0ru";
+  const cohere = new CohereClient({
+    token: API_KEY,
+  });
+
+  const [item1, setItem1] = useState<FoodItem | null>(null);
+  const [item2, setItem2] = useState<FoodItem | null>(null);
+  const [refresh, setRefresh] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
+
+  useEffect(() => {
+    setRefresh(false);
+    setLoading(true);
+    const getSuggestion = async () => {
+      const chat = await cohere.chat({
+        message:
+          `Give me two recommendations of the following foods: ${filteredItems.map(
+            (item) => item.name
+          )}. ` +
+          `${
+            state.suggestionComment.length > 0
+              ? `Consider this too: ${state.suggestionComment}. `
+              : ""
+          }` +
+          "Answer with only the foods' names that I provided, separated by a comma. No other word.",
+        chatHistory: chatHistory,
+      });
+
+      setChatHistory(chatHistory.concat(chat.chatHistory!));
+
+      const foods = chat.text.split(",").map((item) => item.trim());
+      setItem1(
+        filteredItems.find((i) => i.name == foods.at(0)) ?? filteredItems.at(0)!
+      );
+      setItem2(
+        filteredItems.find((i) => i.name == foods.at(1)) ?? filteredItems.at(1)!
+      );
+      setLoading(false);
+    };
+    getSuggestion();
+  }, [refresh]);
+
+  const onSubmit = (data: any) => {
+    setRefresh(true);
+    setLoading(true);
+  };
   const { state, dispatch } = useAppContext();
   const items = FoodItemService.getMenuItems();
-  const filteredItems = shuffle(items.filter(item => item.type != FoodItemTypes.drink).filter(item => item.allergens.every(all => state.allowedAllergens.includes(all)) && item.diets.includes(state.suggestionDiet)))
-
-  const [item1, setItem1] = useState<FoodItem>(filteredItems.pop()!!)
-  const [item2, setItem2] = useState<FoodItem>(filteredItems.pop()!!)
+  const filteredItems = items
+    .filter((item) => item.type != FoodItemTypes.drink)
+    .filter(
+      (item) =>
+        item.allergens.every((all) => state.allowedAllergens.includes(all)) &&
+        item.diets.includes(state.suggestionDiet)
+    );
 
   return (
     <View>
-      <ScrollView contentContainerStyle={styles.scrollView}>
-        <View style={styles.avatar}>
-          <Image
-            source={require("../../../assets/images/chatbot-avatar/chatbot-avatar.png")}
-            style={styles.image}
-          />
-        </View>
-        <ChatBubble text="Based on your preferences, here's what I would suggest to eat!" />
-        <ImageBubble foodItem={item1} />
-        <ChatBubble text="Or are you in the mood for this one? :)" />
-        <ImageBubble foodItem={item2} />
-        <ChatBubble text="If none of these work, I can suggest more!" />
-        <View style={styles.spacer}/>
-      </ScrollView>
-      <View style={styles.center}>
-          <Button style={styles.button} onPress={onSubmit}>
-            Suggest more!
-          </Button>
-        </View>
+      {item1 && item2 && !loading ? (
+        <>
+          <ScrollView contentContainerStyle={styles.scrollView}>
+            <View style={styles.avatar}>
+              <Image
+                source={require("../../../assets/images/chatbot-avatar/chatbot-avatar.png")}
+                style={styles.image}
+              />
+            </View>
+            <ChatBubble text="Based on your preferences, here's what I would suggest to eat!" />
+            <ImageBubble foodItem={item1} />
+            <ChatBubble text="Or are you in the mood for this one? :)" />
+            <ImageBubble foodItem={item2} />
+            <ChatBubble text="If none of these work, I can suggest more!" />
+            <View style={styles.spacer} />
+          </ScrollView>
+          <View style={styles.center}>
+            <Button style={styles.button} onPress={onSubmit}>
+              Suggest more!
+            </Button>
+          </View>
+        </>
+      ) : (
+        <ActivityIndicator style={styles.loading} size="large" />
+      )}
     </View>
   );
 }
@@ -72,6 +118,14 @@ const styles = StyleSheet.create({
     columnGap: 20,
     rowGap: 15,
     alignItems: "flex-end",
+  },
+
+  loading: {
+    width: "100%",
+    height: "100%",
+    backgroundColor: "white",
+    justifyContent: "center",
+    alignItems: "center",
   },
 
   pressable: {
@@ -108,6 +162,6 @@ const styles = StyleSheet.create({
   },
 
   spacer: {
-    paddingBottom: 50
+    paddingBottom: 50,
   },
 });
