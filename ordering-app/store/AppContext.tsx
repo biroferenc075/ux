@@ -4,7 +4,6 @@ import { Allergens } from "@/models/enums/allergens";
 import { Diets } from "@/models/enums/diets";
 import { FoodItem } from "@/models/foodItem";
 import { Order } from "@/models/order";
-import { OrderService } from "@/services/orderService";
 import { createContext, useContext, useReducer } from "react";
 
 interface AppState {
@@ -30,7 +29,7 @@ export interface AppContextType {
 const initialState: AppState = {
   selectedFoodItem: undefined,
   cart: [],
-  orderHistory: [], //OrderService.getOrderHistory(),
+  orderHistory: orderHistory,
   tableNumber: undefined,
   allowedAllergens: Object.values(Allergens),
   suggestionDiet: Diets.meat_eater,
