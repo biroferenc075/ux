@@ -6,15 +6,14 @@ import { useAppContext } from "@/store/AppContext";
 import CartItemCard from "@/components/CartItemCard";
 import { Order } from "@/models/order";
 import { OrderStatuses } from "@/models/enums/orderStatuses";
-import "react-native-get-random-values";
-import { nanoid } from "nanoid";
+import ShortUniqueId from "short-unique-id";
 
 export default function CartScreen() {
   const { state, dispatch } = useAppContext();
-
+  const uid = new ShortUniqueId({ length: 10 });
   const onSubmitOrder = () => {
     const order: Order = {
-      id: nanoid(10),
+      id: uid.rnd(),
       date: new Date(),
       orderedItems: state.cart,
       price: state.cart.reduce((acc, item) => {

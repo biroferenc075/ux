@@ -7,8 +7,7 @@ import { AllergenBadge } from "@/components/AllergenBadge";
 import ItemCountSelector from "@/components/ItemCountSelector";
 import { CartItem } from "@/models/cartItem";
 import { FoodItem } from "@/models/foodItem";
-import "react-native-get-random-values";
-import { nanoid } from "nanoid";
+import ShortUniqueId from "short-unique-id";
 
 export default function DetailsScreen() {
   const { state, dispatch } = useAppContext();
@@ -25,12 +24,13 @@ export default function DetailsScreen() {
   };
 
   const onAddToCartPressed = () => {
+    const uid = new ShortUniqueId({ length: 10 });
     const cartItem: CartItem = {
       count: itemCount,
       foodItem: foodItem,
       priceSum: itemCount * foodItem?.price,
       note: note,
-      id: nanoid(10),
+      id: uid.rnd(),
     };
     dispatch({ type: "ADD_TO_CART", payload: cartItem });
     router.navigate("/order/food-menu");

@@ -1,14 +1,13 @@
 import { OrderStatuses } from "@/models/enums/orderStatuses";
 import { Order } from "../models/order";
-import "react-native-get-random-values";
-import { nanoid } from "nanoid";
 import { FoodItemTypes } from "@/models/enums/foodItemTypes";
 import { Allergens } from "@/models/enums/allergens";
 import { Diets } from "@/models/enums/diets";
-
+import ShortUniqueId from "short-unique-id";
+const uid = new ShortUniqueId({ length: 10 });
 export const orderHistory: Order[] = [
   {
-    id: nanoid(10),
+    id: uid.rnd(),
     date: new Date("2024-05-05T20:20:00"),
     price: 4000,
     status: OrderStatuses.preparing,
@@ -27,10 +26,10 @@ export const orderHistory: Order[] = [
         },
         priceSum: 1800,
         note: "No spicy please",
-        id: nanoid(10),
+        id: uid.rnd(),
       },
       {
-        id: nanoid(10),
+        id: uid.rnd(),
         count: 2,
         foodItem: {
           name: "Margherita Pizza",
@@ -48,7 +47,7 @@ export const orderHistory: Order[] = [
     ],
   },
   {
-    id: nanoid(10),
+    id: uid.rnd(),
     date: new Date("2024-05-05T20:20:00"),
     price: 4000,
     status: OrderStatuses.served,
@@ -67,10 +66,10 @@ export const orderHistory: Order[] = [
         },
         priceSum: 1800,
         note: "No spicy please",
-        id: nanoid(10),
+        id: uid.rnd(),
       },
       {
-        id: nanoid(10),
+        id: uid.rnd(),
         count: 2,
         foodItem: {
           name: "Margherita Pizza",
@@ -88,7 +87,7 @@ export const orderHistory: Order[] = [
     ],
   },
   {
-    id: nanoid(10),
+    id: uid.rnd(),
     date: new Date("2024-05-05T20:20:00"),
     price: 4000,
     status: OrderStatuses.completed,
@@ -110,7 +109,7 @@ export const orderHistory: Order[] = [
         id: "30adgaga",
       },
       {
-        id: nanoid(10),
+        id: uid.rnd(),
         count: 2,
         foodItem: {
           name: "Margherita Pizza",
