@@ -51,7 +51,7 @@ export const orderHistory: Order[] = [
     id: nanoid(10),
     date: new Date("2024-05-05T20:20:00"),
     price: 4000,
-    status: OrderStatuses.preparing,
+    status: OrderStatuses.served,
     orderedItems: [
       {
         count: 1,
@@ -91,7 +91,7 @@ export const orderHistory: Order[] = [
     id: nanoid(10),
     date: new Date("2024-05-05T20:20:00"),
     price: 4000,
-    status: OrderStatuses.preparing,
+    status: OrderStatuses.completed,
     orderedItems: [
       {
         count: 1,

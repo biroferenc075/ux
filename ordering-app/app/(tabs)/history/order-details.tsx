@@ -49,7 +49,15 @@ export default function OrderDetailsScreen() {
             source={{ uri: getOrderStatusImageSrc() }}
           ></Image>
         </View>
-        <Text category="h5" style={{ paddingTop: 10, textAlign: "center" }}>
+        <Text
+          category="h5"
+          style={{
+            paddingTop: 10,
+            paddingHorizontal: 10,
+            textAlign: "center",
+            fontSize: 20,
+          }}
+        >
           {getOrderStatusMessage()}
         </Text>
       </View>
@@ -60,23 +68,21 @@ export default function OrderDetailsScreen() {
         ))}
       </View>
       <View style={styles.separator} />
-      <View>
-        <Layout
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            padding: 20,
-          }}
-        >
-          <Text category="h6" style={{ fontSize: 16 }}>
-            Total
-          </Text>
-          <Text category="h6" style={{ fontSize: 16 }}>
-            {order.orderedItems.reduce((temp, item) => temp + item.priceSum, 0)}{" "}
-            Ft
-          </Text>
-        </Layout>
-      </View>
+      <Layout
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+          padding: 20,
+        }}
+      >
+        <Text category="h6" style={{ fontSize: 16 }}>
+          Total
+        </Text>
+        <Text category="h6" style={{ fontSize: 16 }}>
+          {order.orderedItems.reduce((temp, item) => temp + item.priceSum, 0)}{" "}
+          Ft
+        </Text>
+      </Layout>
     </ScrollView>
   );
 }

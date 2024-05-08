@@ -22,7 +22,9 @@ const OrderHistoryCard = ({ orderHistory }: { orderHistory: Order }) => {
       </Layout>
       <Layout style={{ flexDirection: "row", justifyContent: "space-between" }}>
         <Text category="s1">{orderHistory.price} Ft</Text>
-        <Text category="s1">{orderHistory.status}</Text>
+        <Text category="s1">
+          {orderHistory.status[0].toUpperCase() + orderHistory.status.slice(1)}
+        </Text>
       </Layout>
     </Card>
   );

@@ -24,6 +24,12 @@ export default function CartScreen() {
     };
     dispatch({ type: "SUBMIT_ORDER", payload: order });
     dispatch({ type: "EMPTY_CART", payload: order });
+    router.navigate({
+      pathname: "history/order-details",
+      params: {
+        id: order.id,
+      },
+    });
   };
 
   return (

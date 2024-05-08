@@ -10,9 +10,11 @@ export default function OrderHistoryScreen() {
     <>
       <ScrollView contentContainerStyle={styles.container}>
         <Text style={styles.header}>Order History</Text>
-        {state.orderHistory.map((item) => (
-          <OrderHistoryCard orderHistory={item} key={item.id} />
-        ))}
+        {state.orderHistory
+          .sort((o1, o2) => o2.date.getTime() - o1.date.getTime())
+          .map((item) => (
+            <OrderHistoryCard orderHistory={item} key={item.id} />
+          ))}
       </ScrollView>
     </>
   );
