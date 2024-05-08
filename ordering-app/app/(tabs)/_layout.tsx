@@ -29,9 +29,16 @@ export default function TabLayout() {
         name="order"
         options={{
           title: "Order",
-          headerTintColor: theme["color-primary-500"],
+          tabBarActiveBackgroundColor: theme["color-primary-500"],
+          tabBarInactiveBackgroundColor: theme["color-primary-700"],
+          tabBarActiveTintColor: "#FFF",
+          tabBarInactiveTintColor: "#FFF",
+          //tabBarStyle: { TODO look into this xd
+          //  borderTopColor: theme["color-primary-900"],
+          //  borderTopWidth: 4
+          //},
           tabBarIcon: ({ color }) => (
-            <TabBarIcon name="hamburger" color={theme["color-primary-500"]} />
+            <TabBarIcon name="hamburger" color="#FFF" />
           ),
         }}
       />
@@ -39,10 +46,17 @@ export default function TabLayout() {
         name="cart"
         options={{
           title: "Cart",
+          tabBarActiveBackgroundColor: theme["color-primary-500"],
+          tabBarInactiveBackgroundColor: theme["color-primary-700"],
+          headerStyle: {
+            backgroundColor: theme["color-primary-500"]
+          },
+          tabBarActiveTintColor: "#FFF",
+          tabBarInactiveTintColor: "#FFF",
           tabBarIcon: ({ color }) => (
             <TabBarIcon
               name="shopping-basket"
-              color={theme["color-primary-500"]}
+              color="#FFF"
             />
           ),
         }}
@@ -51,8 +65,15 @@ export default function TabLayout() {
         name="history"
         options={{
           title: "History",
+          tabBarActiveBackgroundColor: theme["color-primary-500"],
+          tabBarInactiveBackgroundColor: theme["color-primary-700"],
+          headerStyle: {
+            backgroundColor: theme["color-primary-500"]
+          },
+          tabBarActiveTintColor: "#FFF",
+          tabBarInactiveTintColor: "#FFF",
           tabBarIcon: ({ color }) => (
-            <TabBarIcon name="receipt" color={theme["color-primary-500"]} />
+            <TabBarIcon name="receipt" color="#FFF"/>
           ),
         }}
       />
@@ -60,8 +81,15 @@ export default function TabLayout() {
         name="suggestion"
         options={{
           title: "Suggestion",
+          tabBarActiveBackgroundColor: theme["color-primary-500"],
+          tabBarInactiveBackgroundColor: theme["color-primary-700"],
+          headerStyle: {
+            backgroundColor: theme["color-primary-500"]
+          },
+          tabBarActiveTintColor: "#FFF",
+          tabBarInactiveTintColor: "#FFF",
           tabBarIcon: ({ color }) => (
-            <TabBarIcon name="lightbulb" color={theme["color-primary-500"]} />
+            <TabBarIcon name="lightbulb" color="#FFF" />
           ),
         }}
       />

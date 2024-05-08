@@ -9,7 +9,6 @@ export default function OrderHistoryScreen() {
   return (
     <>
       <ScrollView contentContainerStyle={styles.container}>
-        <Text style={styles.header}>Order History</Text>
         {state.orderHistory
           .sort((o1, o2) => o2.date.getTime() - o1.date.getTime())
           .map((item) => (

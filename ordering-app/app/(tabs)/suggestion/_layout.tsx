@@ -1,4 +1,5 @@
 import { Stack } from "expo-router";
+import theme from "../../../custom-theme.json";
 
 export default function SuggestionLayout() {
   return (
@@ -9,7 +10,13 @@ export default function SuggestionLayout() {
       />
       <Stack.Screen
         name="chat"
-        options={{title: "Chat" }}
+        options={{
+        title: "Chat",
+        headerTintColor: "#FFF",
+        headerStyle: {
+          backgroundColor: theme["color-primary-500"],
+        },
+        }}
       />
     </Stack>
   );

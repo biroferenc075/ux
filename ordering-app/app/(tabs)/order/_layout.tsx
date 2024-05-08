@@ -13,7 +13,10 @@ export default function OrderLayout() {
         options={{
           headerShown: true,
           title: "Details",
-          headerTintColor: theme["color-primary-500"],
+          headerTintColor: "#FFF",
+          headerStyle: {
+            backgroundColor: theme["color-primary-500"],
+          },
         }}
       />
     </Stack>

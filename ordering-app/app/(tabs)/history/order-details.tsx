@@ -23,14 +23,14 @@ export default function OrderDetailsScreen() {
     }
   };
 
-  const getOrderStatusImageSrc = (): string => {
+  const getOrderStatusImageSrc = () => {
     switch (order.status) {
       case OrderStatuses.preparing:
-        return "Our chefs are working hard to prepare your order!";
+        return require("../../../assets/images/order-status/preparing.jpg");
       case OrderStatuses.served:
-        return "Enjoy your meal!";
+        return require("../../../assets/images/order-status/served.jpg");
       case OrderStatuses.completed:
-        return "You already paid for this order. See you next time!";
+        return require("../../../assets/images/order-status/completed.jpg");
     }
   };
 
@@ -46,7 +46,7 @@ export default function OrderDetailsScreen() {
         <View style={styles.imageContainer}>
           <Image
             style={styles.image}
-            source={{ uri: getOrderStatusImageSrc() }}
+            source={getOrderStatusImageSrc()}
           ></Image>
         </View>
         <Text
@@ -95,20 +95,24 @@ const styles = StyleSheet.create({
     minHeight: "100%",
   },
   image: {
-    width: 200,
-    height: 200,
-    borderRadius: 20,
+    width: "100%",
+    height: "100%",
+    resizeMode: "stretch"
   },
   imageContainer: {
+    width: 200,
+    height: 200,
     borderWidth: 2,
     borderColor: "#ddd",
     borderRadius: 20,
     overflow: "hidden",
+    backgroundColor: "#0000"
   },
   section: {
     alignItems: "center",
     justifyContent: "center",
     paddingVertical: 20,
+    backgroundColor: "#0000"
   },
   separator: {
     borderBottomWidth: 2,

@@ -159,7 +159,7 @@ export default function SuggestionScreen() {
       />
       <Button
         style={styles.button}
-        onPress={(event) => {
+        onPress={() => {
           getSuggestion();
           router.navigate({ pathname: "suggestion/chat" });
         }}
