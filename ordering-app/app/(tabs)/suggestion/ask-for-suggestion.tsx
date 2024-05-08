@@ -103,7 +103,7 @@ export default function SuggestionScreen() {
     <ScrollView contentContainerStyle={styles.scrollView}>
       <View style={styles.imagecontainer}>
         <Image
-          source={require("../../../assets/dump/robot-chatbot-head-icon-sign-vector.png")}
+          source={require("../../../assets/images/chatbot-avatar/chatbot-avatar.png")}
           style={styles.image}
         />
       </View>

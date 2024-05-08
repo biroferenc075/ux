@@ -39,7 +39,7 @@ export default function ChatScreen() {
       <ScrollView contentContainerStyle={styles.scrollView}>
         <View style={styles.avatar}>
           <Image
-            source={require("../../../assets/dump/robot-chatbot-head-icon-sign-vector.png")}
+            source={require("../../../assets/images/chatbot-avatar/chatbot-avatar.png")}
             style={styles.image}
           />
         </View>
