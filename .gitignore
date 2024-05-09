@@ -170,3 +170,5 @@ vendor/
 
 # CircleCI
 .circleci/generated_config.yml
+ordering-app/%ProgramData%/Microsoft/Windows/UUS/State/_active.uusver
+/ordering-app/%ProgramData%
