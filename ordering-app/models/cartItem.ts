@@ -1,7 +1,7 @@
 import { FoodItem } from "./foodItem";
 
 export interface CartItem {
-  id: number;
+  id: string;
   foodItem: FoodItem;
   count: number;
   note: string;

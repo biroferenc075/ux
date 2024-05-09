@@ -7,6 +7,7 @@ const getMenuItems = (): FoodItem[] => {
   return menuItems.map(item => {return {
     name: item.name,
     price: item.price,
+    type: item.type,
     allergens: item.allergens.map(a => a as keyof typeof Allergens),
     diets: item.diets.map(d => d as keyof typeof Diets),
     description: item.description,

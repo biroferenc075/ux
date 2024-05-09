@@ -1,9 +1,9 @@
 import React from "react";
 import { Tabs } from "expo-router";
-
 import Colors from "@/constants/Colors";
-import { useColorScheme } from "@/components/useColorScheme";
+import { useColorScheme } from "@/hooks/useColorScheme";
 import { FontAwesome5 } from "@expo/vector-icons";
+import theme from "../../custom-theme.json";
 
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 function TabBarIcon(props: {
@@ -29,8 +29,16 @@ export default function TabLayout() {
         name="order"
         options={{
           title: "Order",
+          tabBarActiveBackgroundColor: theme["color-primary-500"],
+          tabBarInactiveBackgroundColor: theme["color-primary-700"],
+          tabBarActiveTintColor: "#FFF",
+          tabBarInactiveTintColor: "#FFF",
+          //tabBarStyle: { TODO look into this xd
+          //  borderTopColor: theme["color-primary-900"],
+          //  borderTopWidth: 4
+          //},
           tabBarIcon: ({ color }) => (
-            <TabBarIcon name="hamburger" color={color} />
+            <TabBarIcon name="hamburger" color="#FFF" />
           ),
         }}
       />
@@ -38,8 +46,18 @@ export default function TabLayout() {
         name="cart"
         options={{
           title: "Cart",
+          tabBarActiveBackgroundColor: theme["color-primary-500"],
+          tabBarInactiveBackgroundColor: theme["color-primary-700"],
+          headerStyle: {
+            backgroundColor: theme["color-primary-500"]
+          },
+          tabBarActiveTintColor: "#FFF",
+          tabBarInactiveTintColor: "#FFF",
           tabBarIcon: ({ color }) => (
-            <TabBarIcon name="shopping-basket" color={color} />
+            <TabBarIcon
+              name="shopping-basket"
+              color="#FFF"
+            />
           ),
         }}
       />
@@ -47,8 +65,15 @@ export default function TabLayout() {
         name="history"
         options={{
           title: "History",
+          tabBarActiveBackgroundColor: theme["color-primary-500"],
+          tabBarInactiveBackgroundColor: theme["color-primary-700"],
+          headerStyle: {
+            backgroundColor: theme["color-primary-500"]
+          },
+          tabBarActiveTintColor: "#FFF",
+          tabBarInactiveTintColor: "#FFF",
           tabBarIcon: ({ color }) => (
-            <TabBarIcon name="receipt" color={color} />
+            <TabBarIcon name="receipt" color="#FFF"/>
           ),
         }}
       />
@@ -56,8 +81,15 @@ export default function TabLayout() {
         name="suggestion"
         options={{
           title: "Suggestion",
+          tabBarActiveBackgroundColor: theme["color-primary-500"],
+          tabBarInactiveBackgroundColor: theme["color-primary-700"],
+          headerStyle: {
+            backgroundColor: theme["color-primary-500"]
+          },
+          tabBarActiveTintColor: "#FFF",
+          tabBarInactiveTintColor: "#FFF",
           tabBarIcon: ({ color }) => (
-            <TabBarIcon name="lightbulb" color={color} />
+            <TabBarIcon name="lightbulb" color="#FFF" />
           ),
         }}
       />
