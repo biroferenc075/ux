@@ -23,6 +23,7 @@ export default function TabLayout() {
         // Disable the static render of the header on web
         // to prevent a hydration error in React Navigation v6.
         headerShown: false,
+        tabBarHideOnKeyboard: true
       }}
     >
       <Tabs.Screen
@@ -43,7 +44,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="cart"
+        name="cart-management"
         options={{
           title: "Cart",
           tabBarActiveBackgroundColor: theme["color-primary-500"],

@@ -12,8 +12,8 @@ export default function QrCodeScanScreen() {
     const codeScanner = useCodeScanner({
       codeTypes: ['qr'],
       onCodeScanned: (codes) => {
-         dispatch({ type: "SET_TABLE_NUMBER", payload: Math.floor(Math.random() * 20)})
-         router.navigate("/cart")
+         dispatch({ type: "SET_TABLE_NUMBER", payload: Math.floor(Math.random() * 20)+1})
+         router.navigate("/cart-management/cart")
       }
     })
 
@@ -31,8 +31,6 @@ export default function QrCodeScanScreen() {
           <Text style={styles.title}>No permissions? :c</Text>
           <View
             style={styles.separator}
-            lightColor="#eee"
-            darkColor="rgba(255,255,255,0.1)"
           />
         </View>);
     }

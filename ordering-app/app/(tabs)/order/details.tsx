@@ -79,12 +79,13 @@ export default function DetailsScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    display: "flex",
     alignItems: "flex-start",
     justifyContent: "flex-start",
     padding: 20,
     minHeight: "100%",
     backgroundColor: "white",
+
   },
   imagecontainer: {
     width: "100%",
@@ -130,6 +131,7 @@ const styles = StyleSheet.create({
     marginVertical: 40,
     justifyContent: "space-between",
     flexWrap: "wrap",
+    marginBottom: 20
   },
   textarea: {
     flexBasis: "100%",

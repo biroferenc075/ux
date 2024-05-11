@@ -9,7 +9,7 @@ interface ICartSnackbarProps {}
 const CartSnackbar: React.FC<ICartSnackbarProps> = () => {
   const { state } = useAppContext();
   const onActionPressed = () => {
-    router.navigate("/cart");
+    router.navigate("/cart-management/cart");
   };
   return (
     <>

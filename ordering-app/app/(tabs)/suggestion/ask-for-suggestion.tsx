@@ -114,8 +114,7 @@ export default function SuggestionScreen() {
           router.navigate({ pathname: "suggestion/chat" });
         }}
       >
-        {" "}
-        Ask for suggestions!{" "}
+      Ask for suggestions!
       </Button>
     </ScrollView>
   );

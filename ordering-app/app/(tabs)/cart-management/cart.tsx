@@ -7,6 +7,7 @@ import CartItemCard from "@/components/CartItemCard";
 import { Order } from "@/models/order";
 import { OrderStatuses } from "@/models/enums/orderStatuses";
 import ShortUniqueId from "short-unique-id";
+import { default as theme } from "../../../custom-theme.json";
 
 export default function CartScreen() {
   const { state, dispatch } = useAppContext();
@@ -32,6 +33,7 @@ export default function CartScreen() {
   };
 
   return (
+    <>
     <ScrollView contentContainerStyle={styles.container}>
       {state.cart.length == 0 ? (
         <>
@@ -48,29 +50,38 @@ export default function CartScreen() {
             state.cart.map((item, index) => (
               <CartItemCard item={item} key={index} />
             ))}
-          {!state.tableNumber && (
-            <Text style={styles.text}>
-              Please scan the QR code on the table before Ordering!
-            </Text>
-          )}
-          <View style={styles.buttoncontainer}>
-            {state.tableNumber ? (
-              <Text>Table {state.tableNumber}</Text>
-            ) : (
-              <Button onPress={() => router.navigate("/qr_code_scan")}>
-                Scan QR code!
-              </Button>
-            )}
-            <Button
-              //disabled={typeof state.tableNumber == "undefined"}
-              onPress={onSubmitOrder}
-            >
-              Order
-            </Button>
-          </View>
+         
         </>
       )}
+      
     </ScrollView>
+    
+    <View style={styles.controlcontainer}>
+       {!state.tableNumber && (
+          <Text style={styles.text}>
+            Please scan the QR code on the table!
+          </Text>
+        )}
+        <View style={styles.buttoncontainer}>
+          {state.tableNumber ? (
+            <Button onPress={() => router.navigate({pathname: "/cart-management/qr-code-scan"})} appearance="outline">
+            {`Table ${state.tableNumber}`}
+          </Button>
+  
+          ) : (
+            <Button onPress={() => router.navigate({pathname: "/cart-management/qr-code-scan"})} >
+              Scan QR code!
+            </Button>
+          )}
+          <Button
+            disabled={typeof state.tableNumber == "undefined" || state.cart.length == 0}
+            onPress={onSubmitOrder}
+          >
+            Order
+          </Button>
+        </View>
+    </View>
+    </>
   );
 }
 
@@ -101,6 +112,16 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "bold",
     textAlign: "center",
-    marginTop: 20,
+    marginBottom: 10,
   },
+
+  controlcontainer: {
+    paddingHorizontal: 30,
+    paddingTop: 10,
+    paddingBottom: 15,
+    display: "flex",
+    flexDirection: "column",
+    backgroundColor: "#f0f0f0"
+  },
+
 });
