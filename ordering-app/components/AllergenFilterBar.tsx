@@ -57,7 +57,6 @@ const AllergenFilterBar: FC<AllergenFilterBarProps> = ({}) => {
       <View style={styles.itemcontainer}>
         {Object.values(Allergens).map((allergen, index) => {
           const isAllowed = state.allowedAllergens.includes(allergen);
-
           return (
             <View style={styles.buttoncontainer} key={index}>
               <View style={styles.bg}>

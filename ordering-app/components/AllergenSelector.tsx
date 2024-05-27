@@ -1,5 +1,5 @@
 import { Allergens } from "@/models/enums/allergens";
-import { Button, Text } from "@ui-kitten/components";
+import { Button, Icon, Text } from "@ui-kitten/components";
 import { FC, useState } from "react";
 import { View, StyleSheet } from "react-native";
 import { AllergenBadge, AllergenHelpers } from "./AllergenBadge";
@@ -31,29 +31,53 @@ const AllergenSelector: FC<AllergenSelectorProps> = ({}) => {
     };
   };
 
+  const getIconStyles = (isAllergenAllowed: boolean) => {
+    return {
+      position: "absolute",
+      top: -25,
+      left: -40,
+      width: 50,
+      height: 50,
+      zIndex: 100,
+      display: isAllergenAllowed ? "none" : "",
+    };
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.itemcontainer}>
-        {Object.values(Allergens).map((allergen, index) => (
-            <View style={styles.buttoncontainer}  key={index}>
-                <View style={styles.bg}>
-                    <View style={styles.frame}/>
-                    <Button
-                    size="tiny"
-                    style={getButtonStyles(
-                    allergen,
-                    state.allowedAllergens.includes(allergen)
-                    )}
-                    accessoryLeft={<AllergenBadge allergen={allergen} backgroundVisible = {false}/>}
-                    onPress={() => handleButtonPress(allergen)}
+        {Object.values(Allergens).map((allergen, index) => {
+          const isAllowed = state.allowedAllergens.includes(allergen);
+          return (
+            <View style={styles.buttoncontainer} key={index}>
+              <View style={styles.bg}>
+                <View style={styles.frame} />
+                <Button
+                  size="tiny"
+                  style={getButtonStyles(allergen, isAllowed)}
+                  accessoryLeft={
+                    <>
+                      <AllergenBadge
+                        allergen={allergen}
+                        backgroundVisible={false}
+                      />
+                      <Icon
+                        name="close-outline"
+                        fill="#880808"
+                        style={getIconStyles(isAllowed)}
+                      />
+                    </>
+                  }
+                  onPress={() => handleButtonPress(allergen)}
                 ></Button>
-                </View>
+              </View>
               <Text style={styles.text}>
                 {allergen.toString().toUpperCase()[0] +
                   allergen.toString().slice(1)}
               </Text>
             </View>
-        ))}
+          );
+        })}
       </View>
     </View>
   );
@@ -61,7 +85,7 @@ const AllergenSelector: FC<AllergenSelectorProps> = ({}) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: "80%"
+    width: "80%",
   },
   itemcontainer: {
     display: "flex",
@@ -72,7 +96,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     columnGap: 20,
     rowGap: 10,
-    alignItems: "center"
+    alignItems: "center",
   },
 
   buttoncontainer: {
@@ -84,7 +108,7 @@ const styles = StyleSheet.create({
   },
 
   text: {
-    marginLeft: 10
+    marginLeft: 10,
   },
 
   bg: {
@@ -103,7 +127,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 2.5,
     left: 2.5,
-    pointerEvents: "box-none"
+    pointerEvents: "box-none",
   },
 });
 
