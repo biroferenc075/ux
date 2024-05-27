@@ -1,5 +1,5 @@
 import { Allergens } from "@/models/enums/allergens";
-import { Button, Text } from "@ui-kitten/components";
+import { Button, Icon, IconElement, Text } from "@ui-kitten/components";
 import { FC, useState } from "react";
 import { View, StyleSheet, TextStyle } from "react-native";
 import { AllergenBadge, AllergenHelpers } from "./AllergenBadge";
@@ -40,31 +40,54 @@ const AllergenFilterBar: FC<AllergenFilterBarProps> = ({}) => {
     };
   };
 
+  const getIconStyles = (isAllergenAllowed: boolean) => {
+    return {
+      position: "absolute",
+      top: -25,
+      left: -40,
+      width: 50,
+      height: 50,
+      zIndex: 100,
+      display: isAllergenAllowed ? "none" : "",
+    };
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.itemcontainer}>
-        {Object.values(Allergens).map((allergen, index) => (
+        {Object.values(Allergens).map((allergen, index) => {
+          const isAllowed = state.allowedAllergens.includes(allergen);
+
+          return (
             <View style={styles.buttoncontainer} key={index}>
               <View style={styles.bg}>
                 <Button
                   size="tiny"
-                  style={getButtonStyles(
-                    allergen,
-                    state.allowedAllergens.includes(allergen)
-                  )}
-                  accessoryLeft={<AllergenBadge allergen={allergen}  backgroundVisible = {false}/>}
+                  style={getButtonStyles(allergen, isAllowed)}
+                  accessoryLeft={
+                    <>
+                      <AllergenBadge
+                        allergen={allergen}
+                        backgroundVisible={false}
+                      />
+                      <Icon
+                        name="close-outline"
+                        fill="#880808"
+                        style={getIconStyles(isAllowed)}
+                      />
+                    </>
+                  }
                   onPress={() => handleButtonPress(allergen)}
                 ></Button>
               </View>
 
-              <Text
-                style={getTextStyles(state.allowedAllergens.includes(allergen))}
-              >
+              <Text style={getTextStyles(isAllowed)}>
                 {allergen.toString().toUpperCase()[0] +
                   allergen.toString().slice(1)}
               </Text>
             </View>
-        ))}
+          );
+        })}
       </View>
     </View>
   );

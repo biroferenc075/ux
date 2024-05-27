@@ -5,9 +5,10 @@ import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import * as eva from "@eva-design/eva";
 import { useColorScheme } from "@/hooks/useColorScheme";
-import { ApplicationProvider } from "@ui-kitten/components";
+import { ApplicationProvider, IconRegistry } from "@ui-kitten/components";
 import { AppProvider } from "@/store/AppContext";
 import { default as theme } from "../custom-theme.json";
+import { EvaIconsPack } from "@ui-kitten/eva-icons";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -50,12 +51,15 @@ function RootLayoutNav() {
   const colorScheme = useColorScheme();
 
   return (
-    <ApplicationProvider {...eva} theme={{ ...eva.light, ...theme }}>
-      <AppProvider>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        </Stack>
-      </AppProvider>
-    </ApplicationProvider>
+    <>
+      <IconRegistry icons={EvaIconsPack} />
+      <ApplicationProvider {...eva} theme={{ ...eva.light, ...theme }}>
+        <AppProvider>
+          <Stack>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          </Stack>
+        </AppProvider>
+      </ApplicationProvider>
+    </>
   );
 }
