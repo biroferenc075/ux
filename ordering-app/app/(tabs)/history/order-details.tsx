@@ -24,6 +24,17 @@ export default function OrderDetailsScreen() {
     }
   };
 
+  const getOrderStatusInstruction = (): string => {
+    switch (order.status) {
+      case OrderStatuses.preparing:
+        return "You can pay at the counter \nafter we serve your meal.";
+      case OrderStatuses.served:
+        return "You can pay at the counter now, or when you are done with your meal.";
+      case OrderStatuses.completed:
+        return "Please do feel free to tell your friends about us though!";
+    }
+  };
+
   const getOrderStatusImageSrc = () => {
     switch (order.status) {
       case OrderStatuses.preparing:
@@ -57,6 +68,16 @@ export default function OrderDetailsScreen() {
           }}
         >
           {getOrderStatusMessage()}
+        </Text>
+        <Text
+          style={{
+            paddingTop: 10,
+            paddingHorizontal: 40,
+            textAlign: "center",
+            fontSize: 16,
+          }}
+        >
+          {getOrderStatusInstruction()}
         </Text>
       </View>
       <View style={styles.separator} />
