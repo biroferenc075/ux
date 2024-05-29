@@ -34,53 +34,68 @@ export default function CartScreen() {
 
   return (
     <>
-    <ScrollView contentContainerStyle={styles.container}>
-      {state.cart.length == 0 ? (
-        <>
-          <Text category="h5" style={styles.title}>
-            Your cart is empty.
+      <ScrollView contentContainerStyle={styles.container}>
+        {state.cart.length == 0 ? (
+          <>
+            <Text category="h5" style={styles.title}>
+              Your cart is empty.
+            </Text>
+            <Button onPress={() => router.navigate("/order/food-menu")}>
+              Browse our menu
+            </Button>
+          </>
+        ) : (
+          <>
+            {state.cart.length > 0 &&
+              state.cart.map((item, index) => (
+                <CartItemCard item={item} key={index} />
+              ))}
+          </>
+        )}
+        <View style={styles.totalContainer}>
+          <View style={styles.separator} />
+          <Text category="h6" style={{ fontSize: 16 }}>
+            Total
           </Text>
-          <Button onPress={() => router.navigate("/order/food-menu")}>
-            Browse our menu
-          </Button>
-        </>
-      ) : (
-        <>
-          {state.cart.length > 0 &&
-            state.cart.map((item, index) => (
-              <CartItemCard item={item} key={index} />
-            ))}
-         
-        </>
-      )}
-      
-    </ScrollView>
-    
-    <View style={styles.controlcontainer}>
-       {!state.tableNumber && (
-          <Text style={styles.text}>
-            Please scan the QR code on the table!
+          <Text category="h6" style={{ fontSize: 16 }}>
+            {state.cart.reduce((temp, item) => temp + item.priceSum, 0)} Ft
           </Text>
+        </View>
+      </ScrollView>
+
+      <View style={styles.controlcontainer}>
+        {!state.tableNumber && (
+          <Text style={styles.text}>Please scan the QR code on the table!</Text>
         )}
         <View style={styles.buttoncontainer}>
           {state.tableNumber ? (
-            <Button onPress={() => router.navigate({pathname: "/cart-management/qr-code-scan"})} appearance="outline">
-            {`Table ${state.tableNumber}`}
-          </Button>
-  
+            <Button
+              onPress={() =>
+                router.navigate({ pathname: "/cart-management/qr-code-scan" })
+              }
+              appearance="outline"
+            >
+              {`Table ${state.tableNumber}`}
+            </Button>
           ) : (
-            <Button onPress={() => router.navigate({pathname: "/cart-management/qr-code-scan"})} >
+            <Button
+              onPress={() =>
+                router.navigate({ pathname: "/cart-management/qr-code-scan" })
+              }
+            >
               Scan QR code!
             </Button>
           )}
           <Button
-            disabled={typeof state.tableNumber == "undefined" || state.cart.length == 0}
+            disabled={
+              typeof state.tableNumber == "undefined" || state.cart.length == 0
+            }
             onPress={onSubmitOrder}
           >
             Order
           </Button>
         </View>
-    </View>
+      </View>
     </>
   );
 }
@@ -96,9 +111,22 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     minHeight: "100%",
   },
+  totalContainer: {
+    display: "flex",
+    flexDirection: "row",
+    width: "100%",
+    justifyContent: "space-between",
+    flexWrap: "wrap",
+    rowGap: 15,
+  },
   title: {
     fontSize: 20,
     fontWeight: "bold",
+  },
+  separator: {
+    borderBottomWidth: 2,
+    borderColor: "#ccc",
+    flexBasis: "100%",
   },
   buttoncontainer: {
     display: "flex",
@@ -121,7 +149,6 @@ const styles = StyleSheet.create({
     paddingBottom: 15,
     display: "flex",
     flexDirection: "column",
-    backgroundColor: "#f0f0f0"
+    backgroundColor: "#f0f0f0",
   },
-
 });
