@@ -39,13 +39,13 @@ export default function FoodMenuScreen() {
     <>
       <Pressable style={visible ? styles.backdrop : styles.hide} onPress={() => {setVisible(false)}}>
         <View style = {styles.popupContainerTop}> 
-          <View style = {styles.popupTextContainer}>
+          <View style = {styles.popupTextContainerTop}>
             <Text style = {styles.popupText}>You can click on these icons to filter the menu for allergens!</Text>
           </View>
           <Text style = {styles.popupArrowTop}>{""}</Text>
         </View>
         <View style = {styles.popupContainerBottom}> 
-          <View style = {styles.popupTextContainer}>
+          <View style = {styles.popupTextContainerBottom}>
             <Text style = {styles.popupText}>If you are unsure about what to order, our AI colleague can give you suggestions!</Text>
           </View>
           <Text style = {styles.popupArrowBottom}>{""}</Text>
@@ -104,12 +104,13 @@ const styles = StyleSheet.create({
     display: "none"
   },
 
-  popupTextContainer: {
+  popupTextContainerTop: {
+    width: "70%",
     position: "relative",
-    borderColor: "white",
-    borderRadius: 18,
+    borderColor: theme["color-primary-400"],
+    borderRadius: 12,
     borderWidth: 5,
-    backgroundColor: theme["color-primary-200"],
+    backgroundColor: theme["color-primary-400"],
     padding: 10,
     display: "flex",
     flexWrap: "wrap",
@@ -117,25 +118,47 @@ const styles = StyleSheet.create({
     flexDirection: "row"
   },
 
+  popupTextContainerBottom: {
+    width: "70%",
+    position: "relative",
+    borderColor: theme["color-primary-400"],
+    borderRadius: 12,
+    borderWidth: 5,
+    backgroundColor: theme["color-primary-400"],
+    padding: 10,
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "space-around",
+    flexDirection: "row",
+  },
+
   popupText: {
     color: "white",
-    margin: 5,
-    fontSize: 18,
-    fontWeight: "bold"
+    margin: 0,
+    fontSize: 16,
+    fontWeight: "bold",
   },
 
   popupContainerTop: {
     height: "auto",
     width: "100%",
     padding: 15,
+    display: "flex",
+    alignItems: "center"
   },
 
   popupContainerBottom: {
     height: "auto",
     position: "absolute",
     width: "100%",
-    padding: 15,
+    paddingTop: 15,
+    paddingBottom: 15,
+    paddingRight: 15,
     bottom: 0,
+    display: "flex",
+    justifyContent: "flex-end",
+    flexDirection: "row",
+    zIndex: 5
   },
 
   popupArrowTop: {
@@ -146,7 +169,7 @@ const styles = StyleSheet.create({
     borderWidth: 15,
     marginBottom: 15,
     borderStyle: "solid",
-    borderBottomColor: "white", // ebben a putriban nem lehet témával mind a négyet megadni :))
+    borderBottomColor: theme["color-primary-400"], // ebben a putriban nem lehet témával mind a négyet megadni :))
     borderTopColor: "transparent",
     borderRightColor: "transparent",
     borderLeftColor: "transparent",
@@ -161,7 +184,7 @@ const styles = StyleSheet.create({
     borderWidth: 15,
     marginTop: 15,
     borderStyle: "solid",
-    borderTopColor: "white", 
+    borderTopColor: theme["color-primary-400"], 
     borderBottomColor: "transparent",
     borderRightColor: "transparent",
     borderLeftColor: "transparent",

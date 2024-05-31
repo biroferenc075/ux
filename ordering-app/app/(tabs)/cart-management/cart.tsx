@@ -50,17 +50,18 @@ export default function CartScreen() {
               state.cart.map((item, index) => (
                 <CartItemCard item={item} key={index} />
               ))}
+              <View style={styles.totalContainer}>
+              <View style={styles.separator} />
+              <Text category="h6" style={{ fontSize: 16 }}>
+                Total
+              </Text>
+              <Text category="h6" style={{ fontSize: 16 }}>
+                {state.cart.reduce((temp, item) => temp + item.priceSum, 0)} Ft
+              </Text>
+            </View>
           </>
         )}
-        <View style={styles.totalContainer}>
-          <View style={styles.separator} />
-          <Text category="h6" style={{ fontSize: 16 }}>
-            Total
-          </Text>
-          <Text category="h6" style={{ fontSize: 16 }}>
-            {state.cart.reduce((temp, item) => temp + item.priceSum, 0)} Ft
-          </Text>
-        </View>
+        
       </ScrollView>
 
       <View style={styles.controlcontainer}>

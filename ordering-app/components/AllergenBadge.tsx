@@ -26,17 +26,18 @@ const getSrc = (allergen: Allergens) => {
 const getColor = (allergen: Allergens) => {
   switch (allergen) {
     case Allergens.dairy:
-      return "#2AD2FF";
-    case Allergens.eggs:
-      return "#f23f35";
+      return "#0099ff";
     case Allergens.gluten:
-      return "#f78000";
-    case Allergens.nuts:
-      return "#947751";
-    case Allergens.soy:
-      return "#2F723A";
+      return "#fcba03";
+    case Allergens.eggs:
+      return "#A63D40";
     case Allergens.fish:
-      return "#597dba";
+      return "#004080";
+    case Allergens.nuts:
+      return "#574029";
+    case Allergens.soy:
+      return "#004d1a";
+    
   }
 };
 
