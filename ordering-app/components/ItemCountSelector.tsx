@@ -18,10 +18,8 @@ const ItemCountSelector: React.FC<ItemCountSelectorProps> = ({
   max = Infinity,
   onValueChange,
 }) => {
-  // Initialize the state with the initial value
   const [value, setValue] = useState(initialValue > min ? initialValue : min);
 
-  // Function to handle incrementing the value
   const incrementValue = () => {
     const newValue = value + step;
     if (newValue <= max) {
@@ -32,7 +30,6 @@ const ItemCountSelector: React.FC<ItemCountSelectorProps> = ({
     }
   };
 
-  // Function to handle decrementing the value
   const decrementValue = () => {
     const newValue = value - step;
     if (newValue >= min) {
@@ -56,7 +53,6 @@ const ItemCountSelector: React.FC<ItemCountSelectorProps> = ({
   );
 };
 
-// Define some styles
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",

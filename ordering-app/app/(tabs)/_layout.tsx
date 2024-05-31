@@ -23,7 +23,7 @@ export default function TabLayout() {
         // Disable the static render of the header on web
         // to prevent a hydration error in React Navigation v6.
         headerShown: false,
-        tabBarHideOnKeyboard: true
+        tabBarHideOnKeyboard: true,
       }}
     >
       <Tabs.Screen
@@ -34,7 +34,7 @@ export default function TabLayout() {
           tabBarInactiveBackgroundColor: theme["color-primary-700"],
           tabBarActiveTintColor: "#FFF",
           tabBarInactiveTintColor: "#FFF",
-          //tabBarStyle: { TODO look into this xd
+          //tabBarStyle: {
           //  borderTopColor: theme["color-primary-900"],
           //  borderTopWidth: 4
           //},
@@ -50,15 +50,12 @@ export default function TabLayout() {
           tabBarActiveBackgroundColor: theme["color-primary-500"],
           tabBarInactiveBackgroundColor: theme["color-primary-700"],
           headerStyle: {
-            backgroundColor: theme["color-primary-500"]
+            backgroundColor: theme["color-primary-500"],
           },
           tabBarActiveTintColor: "#FFF",
           tabBarInactiveTintColor: "#FFF",
           tabBarIcon: ({ color }) => (
-            <TabBarIcon
-              name="shopping-basket"
-              color="#FFF"
-            />
+            <TabBarIcon name="shopping-basket" color="#FFF" />
           ),
         }}
       />
@@ -69,13 +66,11 @@ export default function TabLayout() {
           tabBarActiveBackgroundColor: theme["color-primary-500"],
           tabBarInactiveBackgroundColor: theme["color-primary-700"],
           headerStyle: {
-            backgroundColor: theme["color-primary-500"]
+            backgroundColor: theme["color-primary-500"],
           },
           tabBarActiveTintColor: "#FFF",
           tabBarInactiveTintColor: "#FFF",
-          tabBarIcon: ({ color }) => (
-            <TabBarIcon name="receipt" color="#FFF"/>
-          ),
+          tabBarIcon: ({ color }) => <TabBarIcon name="receipt" color="#FFF" />,
         }}
       />
       <Tabs.Screen
@@ -85,7 +80,7 @@ export default function TabLayout() {
           tabBarActiveBackgroundColor: theme["color-primary-500"],
           tabBarInactiveBackgroundColor: theme["color-primary-700"],
           headerStyle: {
-            backgroundColor: theme["color-primary-500"]
+            backgroundColor: theme["color-primary-500"],
           },
           tabBarActiveTintColor: "#FFF",
           tabBarInactiveTintColor: "#FFF",
